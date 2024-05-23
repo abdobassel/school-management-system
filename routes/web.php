@@ -1,7 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\GradeController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -15,9 +18,22 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
-Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
-    /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
-    Route::get('/', function () {
-        return View::make('dashboard');
-    });
+Auth::routes();
+
+Route::get('/', function () {
+    return view('auth.login');
 });
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth']
+    ],
+    function () {
+
+
+        Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+        Route::get('/grades', [GradeController::class, 'index'])->name('grades.index');
+        Route::post('/grades', [GradeController::class, 'store'])->name('grades.store');
+    }
+
+);
