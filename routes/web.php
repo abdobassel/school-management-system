@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GradeController;
+use App\Http\Controllers\ClassroomController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -37,6 +38,8 @@ Route::group(
         Route::delete('/grades/{id}', [GradeController::class, 'destroy'])->name('grades.destroy');
 
         Route::patch('/grades', [GradeController::class, 'update'])->name('grades.update');
+        // classrooms
+        Route::get('/classrooms', [ClassroomController::class, 'index'])->name('Classrooms.index');
     }
 
 );

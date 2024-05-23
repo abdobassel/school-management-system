@@ -34,21 +34,19 @@
                         </a>
                         <ul id="elements" class="collapse" data-parent="#sidebarnav">
                             <li><a href="{{ route('grades.index') }}">{{ trans('main_trans.grades_list') }}</a></li>
-
-
-
                         </ul>
                     </li>
                     <!-- menu item calendar-->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#calendar-menu">
                             <div class="pull-left"><i class="ti-calendar"></i><span
-                                    class="right-nav-text">calendar</span></div>
+                                    class="right-nav-text">{{ trans('main_trans.classes') }}</span></div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="calendar-menu" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="calendar.html">Events Calendar </a> </li>
+                            <li> <a href="{{ route('Classrooms.index') }}">{{ trans('main_trans.List_classes') }} </a>
+                            </li>
                             <li> <a href="calendar-list.html">List Calendar</a> </li>
                         </ul>
                     </li>
