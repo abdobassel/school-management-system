@@ -148,7 +148,8 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="#" method="post">
+                                                <form action="{{ route('grades.destroy', ['id' => $Grade->id]) }}"
+                                                    method="post">
                                                     {{ method_field('delete') }}
                                                     @csrf
                                                     {{ trans('Grades_trans.Warning_Grade') }}

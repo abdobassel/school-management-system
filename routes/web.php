@@ -34,6 +34,9 @@ Route::group(
         Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
         Route::get('/grades', [GradeController::class, 'index'])->name('grades.index');
         Route::post('/grades', [GradeController::class, 'store'])->name('grades.store');
+        Route::delete('/grades/{id}', [GradeController::class, 'destroy'])->name('grades.destroy');
+
+        Route::patch('/grades', [GradeController::class, 'update'])->name('grades.update');
     }
 
 );

@@ -36,13 +36,14 @@ class GradeController extends Controller
      */
     public function store(Request $request)
     {
+
         $grade = new Grade();
         $translations = ['en' => $request->name_en, 'ar' => $request->name_ar];
 
         $grade->setTranslations('name', $translations);
         $grade->notes = $request->notes;
         $grade->save();
-
+        toastr()->success(trans('messages.success'));
         return redirect()->route('grades.index'); // إعادة توجيه المستخدم إلى صفحة العرض الرئيسية
     }
 
@@ -75,9 +76,23 @@ class GradeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        try {
+            //code...
+
+            $grade = Grade::findOrFail($request->id);
+
+            $grade->update([
+                $grade->name =  ['en' => $request->name_en, 'ar' => $request->name_ar],
+                $grade->notes = $request->notes,
+            ]);
+
+            toastr()->success(trans('messages.Update'));
+            return redirect()->route('grades.index');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -88,6 +103,9 @@ class GradeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $grade = Grade::findOrFail($id);
+        $grade->delete();
+        toastr()->success(trans('messages.Delete'));
+        return redirect()->route('grades.index');
     }
 }
