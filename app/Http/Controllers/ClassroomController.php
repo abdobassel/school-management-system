@@ -99,9 +99,22 @@ class ClassroomController extends Controller
      * @param  \App\Classroom  $classroom
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Classroom $classroom)
+    public function update(Request $request)
     {
-        //
+        try {
+            $classroom = Classroom::findOrFail($request->id);
+
+            $classroom->update([
+                $classroom->name = ['ar' => $request->name, 'en' => $request->name_en],
+                $classroom->grade_id = $request->grade_id,
+            ]);
+            toastr()->success(trans('messages.success'));
+            return redirect()->route('Classrooms.index');
+        } catch (\Exception $e) {
+            //throw $th;
+            toastr()->error('Didnt Update');
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -110,8 +123,10 @@ class ClassroomController extends Controller
      * @param  \App\Classroom  $classroom
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Classroom $classroom)
+    public function destroy(Request $request)
     {
-        //
+        Classroom::findOrFail($request->id)->delete();
+        toastr()->success(trans('messages.Delete'));
+        return redirect()->route('Classrooms.index');
     }
 }

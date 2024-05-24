@@ -116,7 +116,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <!-- edit_form -->
-                                                <form action="" method="post">
+                                                <form action="{{ route('Classrooms.update') }}" method="post">
                                                     {{ method_field('patch') }}
                                                     @csrf
                                                     <div class="row">
@@ -133,11 +133,11 @@
                                                         </div>
                                                         <div class="col">
                                                             <label for="Name_en"
-                                                                class="mr-sm-2">{{ trans('My_Classes_trans.Name_class_en') }}
+                                                                class="mr-sm-2">{{ trans('My_Classes_trans.Name_class') }}
                                                                 :</label>
                                                             <input type="text" class="form-control"
                                                                 value="{{ $My_Class->getTranslation('name', 'en') }}"
-                                                                name="Name_en" required>
+                                                                name="name_en" required>
                                                         </div>
                                                     </div><br>
                                                     <div class="form-group">
@@ -145,7 +145,7 @@
                                                             for="exampleFormControlTextarea1">{{ trans('My_Classes_trans.Name_Grade') }}
                                                             :</label>
                                                         <select class="form-control form-control-lg"
-                                                            id="exampleFormControlSelect1" name="Grade_id">
+                                                            id="exampleFormControlSelect1" name="grade_id">
                                                             <option value="{{ $My_Class->Grade->id }}">
                                                                 {{ $My_Class->Grade->name }}
                                                             </option>
@@ -189,7 +189,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="#" method="post">
+                                                <form action="{{ route('Classrooms.destroy') }}" method="post">
                                                     {{ method_field('Delete') }}
                                                     @csrf
                                                     {{ trans('My_Classes_trans.Warning_Grade') }}
@@ -247,7 +247,7 @@
 
                                             <div class="col">
                                                 <label for="Name"
-                                                    class="mr-sm-2">{{ trans('My_Classes_trans.Name_class_en') }}
+                                                    class="mr-sm-2">{{ trans('My_Classes_trans.Name_class') }}
                                                     :</label>
                                                 <input class="form-control" type="text" name="name_en" />
                                             </div>

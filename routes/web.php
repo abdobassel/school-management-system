@@ -42,6 +42,8 @@ Route::group(
         Route::get('/classrooms', [ClassroomController::class, 'index'])->name('Classrooms.index');
 
         Route::post('/classrooms', [ClassroomController::class, 'store'])->name('Classrooms.store');
+        Route::patch('/classrooms', [ClassroomController::class, 'update'])->name('Classrooms.update');
+        Route::delete('/classrooms', [ClassroomController::class, 'destroy'])->name('Classrooms.destroy');
     }
 
 );

@@ -105,9 +105,18 @@ class GradeController extends Controller
      */
     public function destroy($id)
     {
+
+
         $grade = Grade::findOrFail($id);
-        $grade->delete();
-        toastr()->error(trans('messages.Delete'));
+
+
+        if ($grade->classrooms()->count() == 0) {
+            $grade->delete();
+            toastr()->success(trans('messages.success'));
+        } else {
+            toastr()->error(trans('messages.error_grade_has_classrooms'));
+        }
+
         return redirect()->route('grades.index');
     }
 }
