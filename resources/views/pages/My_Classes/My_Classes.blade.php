@@ -45,12 +45,12 @@
 
                 <form action="" method="POST">
                     {{ csrf_field() }}
-                    <select class="selectpicker" data-style="btn-info" name="Grade_id" required
+                    <select class="selectpicker" data-style="btn-info" name="grade_id" required
                         onchange="this.form.submit()">
                         <option value="" selected disabled>{{ trans('My_Classes_trans.Search_By_Grade') }}
                         </option>
                         @foreach ($Grades as $Grade)
-                            <option value="{{ $Grade->id }}">{{ $Grade->Name }}</option>
+                            <option value="{{ $Grade->id }}">{{ $Grade->name }}</option>
                         @endforeach
                     </select>
                 </form>
