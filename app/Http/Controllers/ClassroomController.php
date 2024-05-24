@@ -129,4 +129,15 @@ class ClassroomController extends Controller
         toastr()->success(trans('messages.Delete'));
         return redirect()->route('Classrooms.index');
     }
+
+    public function deleteAll(Request $request)
+    {
+        $delete_all_ids = explode(",", $request->delete_all_id);
+        // array of ids because seperate ids to array by explode then search in array for id
+        // هنا جايلي ايديز من تشيك بوكسس فلازم نفصلهم عن بعض ثم نحذف الجاي فقط في الريكويست 
+
+        Classroom::whereIn('id', $delete_all_ids)->delete();
+        toastr()->success(trans('messages.Delete'));
+        return redirect()->route('Classrooms.index');
+    }
 }

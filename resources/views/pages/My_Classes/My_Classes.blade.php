@@ -325,7 +325,7 @@
                 </button>
             </div>
 
-            <form action="#" method="POST">
+            <form action="{{ route('Classrooms.delete_all') }}" method="POST">
                 {{ csrf_field() }}
                 <div class="modal-body">
                     {{ trans('My_Classes_trans.Warning_Grade') }}
