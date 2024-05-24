@@ -85,8 +85,8 @@
                                     <?php $i++; ?>
                                     <td><input type="checkbox" value="{{ $My_Class->id }}" class="box1"></td>
                                     <td>{{ $i }}</td>
-                                    <td>{{ $My_Class->Name_Class }}</td>
-                                    <td>{{ $My_Class->Grades->Name }}</td>
+                                    <td>{{ $My_Class->name }}</td>
+                                    <td>{{ $My_Class->Grade->name }}</td>
                                     <td>
                                         <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                             data-target="#edit{{ $My_Class->id }}"
@@ -116,7 +116,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <!-- edit_form -->
-                                                <form action="{{ route('Classrooms.update', 'test') }}" method="post">
+                                                <form action="" method="post">
                                                     {{ method_field('patch') }}
                                                     @csrf
                                                     <div class="row">
@@ -124,9 +124,9 @@
                                                             <label for="Name"
                                                                 class="mr-sm-2">{{ trans('My_Classes_trans.Name_class') }}
                                                                 :</label>
-                                                            <input id="Name" type="text" name="Name"
+                                                            <input id="Name" type="text" name="name"
                                                                 class="form-control"
-                                                                value="{{ $My_Class->getTranslation('Name_Class', 'ar') }}"
+                                                                value="{{ $My_Class->getTranslation('name', 'ar') }}"
                                                                 required>
                                                             <input id="id" type="hidden" name="id"
                                                                 class="form-control" value="{{ $My_Class->id }}">
@@ -136,7 +136,7 @@
                                                                 class="mr-sm-2">{{ trans('My_Classes_trans.Name_class_en') }}
                                                                 :</label>
                                                             <input type="text" class="form-control"
-                                                                value="{{ $My_Class->getTranslation('Name_Class', 'en') }}"
+                                                                value="{{ $My_Class->getTranslation('name', 'en') }}"
                                                                 name="Name_en" required>
                                                         </div>
                                                     </div><br>
@@ -146,12 +146,12 @@
                                                             :</label>
                                                         <select class="form-control form-control-lg"
                                                             id="exampleFormControlSelect1" name="Grade_id">
-                                                            <option value="{{ $My_Class->Grades->id }}">
-                                                                {{ $My_Class->Grades->Name }}
+                                                            <option value="{{ $My_Class->Grade->id }}">
+                                                                {{ $My_Class->Grade->name }}
                                                             </option>
                                                             @foreach ($Grades as $Grade)
                                                                 <option value="{{ $Grade->id }}">
-                                                                    {{ $Grade->Name }}
+                                                                    {{ $Grade->name }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -189,8 +189,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="{{ route('Classrooms.destroy', 'test') }}"
-                                                    method="post">
+                                                <form action="#" method="post">
                                                     {{ method_field('Delete') }}
                                                     @csrf
                                                     {{ trans('My_Classes_trans.Warning_Grade') }}
@@ -242,7 +241,7 @@
                                                 <label for="Name"
                                                     class="mr-sm-2">{{ trans('My_Classes_trans.Name_class') }}
                                                     :</label>
-                                                <input class="form-control" type="text" name="Name" />
+                                                <input class="form-control" type="text" name="name" />
                                             </div>
 
 
@@ -250,7 +249,7 @@
                                                 <label for="Name"
                                                     class="mr-sm-2">{{ trans('My_Classes_trans.Name_class_en') }}
                                                     :</label>
-                                                <input class="form-control" type="text" name="Name_class_en" />
+                                                <input class="form-control" type="text" name="name_en" />
                                             </div>
 
 
@@ -260,9 +259,9 @@
                                                     :</label>
 
                                                 <div class="box">
-                                                    <select class="fancyselect" name="Grade_id">
+                                                    <select class="fancyselect" name="grade_id">
                                                         @foreach ($Grades as $Grade)
-                                                            <option value="{{ $Grade->id }}">{{ $Grade->Name }}
+                                                            <option value="{{ $Grade->id }}">{{ $Grade->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -326,7 +325,7 @@
                 </button>
             </div>
 
-            <form action="{{ route('delete_all') }}" method="POST">
+            <form action="#" method="POST">
                 {{ csrf_field() }}
                 <div class="modal-body">
                     {{ trans('My_Classes_trans.Warning_Grade') }}

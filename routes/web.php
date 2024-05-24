@@ -40,6 +40,8 @@ Route::group(
         Route::patch('/grades', [GradeController::class, 'update'])->name('grades.update');
         // classrooms
         Route::get('/classrooms', [ClassroomController::class, 'index'])->name('Classrooms.index');
+
+        Route::post('/classrooms', [ClassroomController::class, 'store'])->name('Classrooms.store');
     }
 
 );

@@ -15,9 +15,9 @@ class ClassroomController extends Controller
      */
     public function index()
     {
-        $My_classes = Classroom::all();
+        $My_Classes = Classroom::with('Grade')->get();
         $Grades = Grade::all();
-        return view('pages.My_Classes.My_Classes', compact('My_classes', 'Grades'));
+        return view('pages.My_Classes.My_Classes', compact('My_Classes', 'Grades'));
     }
 
     /**
@@ -38,7 +38,36 @@ class ClassroomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(
+            $request,
+            [
+                'List_Classes.*.name' => 'required',
+                'List_Classes.*.name_en' => 'required',
+                'List_Classes.*.grade_id' => 'required',
+            ],
+            [
+                'List_Classes.*.name.required' => trans('validation.required'),
+                'List_Classes.*.name_en.required' => trans('validation.required'),
+                'List_Classes.*.grade_id.required' => trans('validation.required'),
+            ]
+        );
+
+        try {
+            // 
+            $List_Classes = $request->List_Classes;
+
+            foreach ($List_Classes as $list_class) {
+                $My_Classes =  new Classroom();
+                $My_Classes->name = ['en' => $list_class['name_en'], 'ar' => $list_class['name']];
+                $My_Classes->grade_id = $list_class['grade_id'];
+                $My_Classes->save();
+            }
+
+            toastr()->success(trans('messages.success'));
+            return redirect()->route('Classrooms.index');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 
     /**
