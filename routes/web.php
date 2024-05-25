@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GradeController;
+use App\Http\Controllers\SectionController;
 use App\Http\Controllers\ClassroomController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -47,6 +48,13 @@ Route::group(
 
         Route::post('/classrooms/delete-all', [ClassroomController::class, 'deleteAll'])->name('Classrooms.delete_all');
         Route::post('/filter-Classes', [ClassroomController::class, 'filterClasses'])->name('filter_classes');
+
+        //sections 
+        Route::get('/sections', [SectionController::class, 'index'])->name('sections.index');
+        // classes options select 
+        Route::get('/classes/{id}', [SectionController::class, 'getclasses']);
+        //store
+        Route::post('/sections', [SectionController::class, 'store'])->name('sections.store');
     }
 
 );
