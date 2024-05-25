@@ -43,7 +43,7 @@
 
                 <br><br>
 
-                <form action="" method="POST">
+                <form action="{{ route('filter_classes') }}" method="POST">
                     {{ csrf_field() }}
                     <select class="selectpicker" data-style="btn-info" name="grade_id" required
                         onchange="this.form.submit()">

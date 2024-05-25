@@ -46,6 +46,7 @@ Route::group(
         Route::post('/classrooms', [ClassroomController::class, 'store'])->name('Classrooms.store');
 
         Route::post('/classrooms/delete-all', [ClassroomController::class, 'deleteAll'])->name('Classrooms.delete_all');
+        Route::post('/filter-Classes', [ClassroomController::class, 'filterClasses'])->name('filter_classes');
     }
 
 );
