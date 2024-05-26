@@ -121,7 +121,9 @@
                                                                                 </div>
                                                                                 <div class="modal-body">
 
-                                                                                    <form action="" method="POST">
+                                                                                    <form
+                                                                                        action="{{ route('sections.update') }}"
+                                                                                        method="POST">
                                                                                         {{ method_field('patch') }}
                                                                                         {{ csrf_field() }}
                                                                                         <div class="row">
@@ -185,18 +187,18 @@
                                                                                         <div class="col">
                                                                                             <div class="form-check">
 
-                                                                                                @if ($list_Sections->Status === 1)
+                                                                                                @if ($list_Sections->status === 1)
                                                                                                     <input
                                                                                                         type="checkbox"
                                                                                                         checked
                                                                                                         class="form-check-input"
-                                                                                                        name="Status"
+                                                                                                        name="status"
                                                                                                         id="exampleCheck1">
                                                                                                 @else
                                                                                                     <input
                                                                                                         type="checkbox"
                                                                                                         class="form-check-input"
-                                                                                                        name="Status"
+                                                                                                        name="status"
                                                                                                         id="exampleCheck1">
                                                                                                 @endif
                                                                                                 <label
