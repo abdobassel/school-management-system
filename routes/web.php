@@ -55,6 +55,7 @@ Route::group(
         Route::get('/classes/{id}', [SectionController::class, 'getclasses']);
         //store
         Route::post('/sections', [SectionController::class, 'store'])->name('sections.store');
+        Route::patch('/sections', [SectionController::class, 'update'])->name('sections.update');
     }
 
 );
