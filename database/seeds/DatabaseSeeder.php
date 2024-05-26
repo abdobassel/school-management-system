@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(BloodSeeder::class);
         $this->call(NationalitySeeder::class);
+        $this->call(ReligionSeeder::class);
     }
 }
