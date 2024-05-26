@@ -17,6 +17,7 @@
         "laravel/sanctum": "*",
         "laravel/tinker": "^2.5",
         "laravel/ui": "*",
+        "livewire/livewire": "^2.12",
         "mcamara/laravel-localization": "^2.0",
         "spatie/laravel-translatable": "*",
         "yoeunes/toastr": "^2.3"
