@@ -143,7 +143,7 @@ class SectionController extends Controller
             $Sections->save();
 
             toastr()->success(trans('messages.success'));
-            return redirect()->route('Classrooms.index');
+            return redirect()->route('sections.index');
         } catch (\Exception $e) {
             //throw $th;
             toastr()->error('Didnt Update');
