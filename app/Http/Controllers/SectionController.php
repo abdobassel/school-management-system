@@ -157,8 +157,11 @@ class SectionController extends Controller
      * @param  \App\Section  $section
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Section $section)
+    public function destroy(request $request)
     {
-        //
+
+        Section::findOrFail($request->id)->delete();
+        toastr()->warning(trans('messages.Delete'));
+        return redirect()->route('sections.index');
     }
 }

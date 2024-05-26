@@ -56,6 +56,7 @@ Route::group(
         //store
         Route::post('/sections', [SectionController::class, 'store'])->name('sections.store');
         Route::patch('/sections', [SectionController::class, 'update'])->name('sections.update');
+        Route::delete('/sections', [SectionController::class, 'destroy'])->name('sections.destroy');
     }
 
 );
