@@ -119,35 +119,38 @@ class AddParent extends Component
 
         $this->successMessage = trans('messages.success');
         $this->clearForm();
+
+        $this->currentStep = 1;
     }
 
 
     // clear form 
     public function clearForm()
     {
-        $this->Phone_Father = '';
         $this->Email = '';
-        $this->Job_Father = '';
-        $this->Job_Mother = '';
-        $this->Job_Father_en = '';
-        $this->Job_Mother_en = '';
         $this->Password = '';
-        $this->Passport_ID_Father = '';
-        $this->Passport_ID_Mother = '';
-        $this->Blood_Type_Father_id = '';
-        $this->Blood_Type_Mother_id = '';
-        $this->Nationality_Father_id = '';
-        $this->Nationality_Mother_id = '';
-        $this->Religion_Mother_id = '';
-        $this->Religion_Father_id = '';
         $this->Name_Father = '';
         $this->Name_Father_en = '';
+        $this->Job_Father = '';
+        $this->Job_Father_en = '';
+        $this->National_ID_Father = '';
+        $this->Phone_Father = '';
+        $this->Nationality_Father_id = '';
+        $this->Blood_Type_Father_id = '';
+        $this->Religion_Father_id = '';
+        $this->Address_Father = '';
+        $this->Passport_ID_Father = '';
         $this->Name_Mother = '';
         $this->Name_Mother_en = '';
-        $this->Address_Mother = '';
+        $this->Job_Mother = '';
+        $this->Job_Mother_en = '';
+        $this->National_ID_Mother = '';
         $this->Phone_Mother = '';
-        $this->Phone_Father = '';
-        $this->Address_Father = '';
+        $this->Nationality_Mother_id = '';
+        $this->Blood_Type_Mother_id = '';
+        $this->Religion_Mother_id = '';
+        $this->Address_Mother = '';
+        $this->Passport_ID_Mother = '';
     }
     public function firstStepSubmit_edit()
     {
