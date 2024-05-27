@@ -7,15 +7,20 @@ use App\MyParent;
 use App\Religion;
 use App\Nationality;
 use Livewire\Component;
+use App\ParentAtachment;
+use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Hash;
 
 class AddParent extends Component
 { //father
+
+    use WithFileUploads;
     public $currentStep = 1, $Email, $Password, $Name_Father, $Name_Father_en, $Job_Father, $Job_Father_en, $National_ID_Father, $Phone_Father, $Nationality_Father_id, $Blood_Type_Father_id, $Religion_Father_id, $Address_Father, $Passport_ID_Father;
     public $successMessage = '';
+    public $photos;
     // mother
     public $Name_Mother, $Name_Mother_en, $Job_Mother, $Job_Mother_en, $National_ID_Mother, $Phone_Mother, $Nationality_Mother_id, $Blood_Type_Mother_id, $Religion_Mother_id, $Address_Mother, $Passport_ID_Mother;
-    public $catchError;
+    public $catchError = false;
 
     // validation
     public function updated($propertyName)
@@ -115,6 +120,19 @@ class AddParent extends Component
             $My_Parent->blood_mother_id = $this->Blood_Type_Mother_id;
             $My_Parent->address_mother = $this->Address_Mother;
             $My_Parent->save();
+
+            if (!empty($this->photos)) {
+                foreach ($this->photos as $photo) {
+                    $photo->storeAs(
+                        'parent_attachments/' . $this->National_ID_Father,
+                        $photo->getClientOriginalName()
+                    );
+                    ParentAtachment::create([
+                        'file_name' => $photo->getClientOriginalName(),
+                        'parent_id' => MyParent::latest()->first()->id,
+                    ]);
+                }
+            }
 
             $this->successMessage = trans('messages.success');
             $this->clearForm();

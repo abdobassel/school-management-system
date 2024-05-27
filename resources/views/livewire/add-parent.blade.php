@@ -48,6 +48,7 @@
 
         <div class="col-xs-12">
             <div class="col-md-12"><br>
+
                 <label style="color: red">{{ trans('Parent_trans.Attachments') }}</label>
                 <div class="form-group">
                     <input type="file" wire:model="photos" accept="image/*" multiple>
