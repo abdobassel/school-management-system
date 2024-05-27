@@ -15,25 +15,23 @@ class AddParent extends Component
     public $successMessage = '';
     // mother
     public $Name_Mother, $Name_Mother_en, $Job_Mother, $Job_Mother_en, $National_ID_Mother, $Phone_Mother, $Nationality_Mother_id, $Blood_Type_Mother_id, $Religion_Mother_id, $Address_Mother, $Passport_ID_Mother;
-
+    public $catchError;
 
     // validation
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName, [
-            'Email' => 'required|email|unique:my_parents,email',
+            'Email' => 'required|email',
             'Password' => 'required',
-            'Name_Father' => 'required',
-            'Name_Father_en' => 'required',
-            'Job_Father' => 'required',
-            'Job_Father_en' => 'required',
-            'National_ID_Father' => 'required|unique:my_parents,national_id_father',
-            'Passport_ID_Father' => 'required|unique:my_parents,passport_id_father',
+
+
+            'National_ID_Father' => 'required|string|min:10|max:15|regex:/[0-9]{9}/',
+            'Passport_ID_Father' => 'required|min:10|max:15',
             'Phone_Father' => 'required|regex:/^([0-9\s\-\*\(\)]*)$/|min:10',
-            'Blood_Type_Father_id' => 'required',
-            'Nationality_Father_id' => 'required',
-            'Address_Father' => 'required',
-            'Religion_Father_id' => 'required',
+            'National_ID_Mother' => 'required|string|min:10|max:15|regex:/[0-9]{9}/',
+            'Passport_ID_Mother' => 'required|min:10|max:15',
+            'Phone_Mother' => 'required|regex:/^([0-9\s\-\*\(\)]*)$/|min:10',
+
 
         ]);
     }
@@ -91,36 +89,41 @@ class AddParent extends Component
 
     public function submitForm()
     {
-        //1 =>  insert 
-        $My_Parent = new MyParent();
-        $My_Parent->name_father = ['ar' => $this->Name_Father, 'en' => $this->Name_Father_en];
-        $My_Parent->email = $this->Email;
-        $My_Parent->password = Hash::make($this->Password);
-        $My_Parent->phone_father = $this->Phone_Father;
-        $My_Parent->national_id_father = $this->National_ID_Father;
-        $My_Parent->job_father = $this->Job_Father;
-        $My_Parent->passport_id_father = $this->Passport_ID_Father;
-        $My_Parent->nationality_father_id = $this->Nationality_Father_id;
-        $My_Parent->religion_father_id = $this->Religion_Father_id;
-        $My_Parent->blood_father_id = $this->Blood_Type_Father_id;
-        $My_Parent->address_father = $this->Address_Father;
-        // mother
-        $My_Parent->name_mother = ['ar' => $this->Name_Mother, 'en' => $this->Name_Mother_en];
+        try {
+            //1 =>  insert 
+            $My_Parent = new MyParent();
+            $My_Parent->name_father = ['ar' => $this->Name_Father, 'en' => $this->Name_Father_en];
+            $My_Parent->email = $this->Email;
+            $My_Parent->password = Hash::make($this->Password);
+            $My_Parent->phone_father = $this->Phone_Father;
+            $My_Parent->national_id_father = $this->National_ID_Father;
+            $My_Parent->job_father = $this->Job_Father;
+            $My_Parent->passport_id_father = $this->Passport_ID_Father;
+            $My_Parent->nationality_father_id = $this->Nationality_Father_id;
+            $My_Parent->religion_father_id = $this->Religion_Father_id;
+            $My_Parent->blood_father_id = $this->Blood_Type_Father_id;
+            $My_Parent->address_father = $this->Address_Father;
+            // mother
+            $My_Parent->name_mother = ['ar' => $this->Name_Mother, 'en' => $this->Name_Mother_en];
 
-        $My_Parent->phone_mother = $this->Phone_Mother;
-        $My_Parent->job_mother = $this->Job_Mother;
-        $My_Parent->national_id_mother = $this->National_ID_Mother;
-        $My_Parent->passport_id_mother = $this->Passport_ID_Mother;
-        $My_Parent->nationality_mother_id = $this->Nationality_Mother_id;
-        $My_Parent->religion_mother_id = $this->Religion_Mother_id;
-        $My_Parent->blood_mother_id = $this->Blood_Type_Mother_id;
-        $My_Parent->address_mother = $this->Address_Mother;
-        $My_Parent->save();
+            $My_Parent->phone_mother = $this->Phone_Mother;
+            $My_Parent->job_mother = $this->Job_Mother;
+            $My_Parent->national_id_mother = $this->National_ID_Mother;
+            $My_Parent->passport_id_mother = $this->Passport_ID_Mother;
+            $My_Parent->nationality_mother_id = $this->Nationality_Mother_id;
+            $My_Parent->religion_mother_id = $this->Religion_Mother_id;
+            $My_Parent->blood_mother_id = $this->Blood_Type_Mother_id;
+            $My_Parent->address_mother = $this->Address_Mother;
+            $My_Parent->save();
 
-        $this->successMessage = trans('messages.success');
-        $this->clearForm();
+            $this->successMessage = trans('messages.success');
+            $this->clearForm();
 
-        $this->currentStep = 1;
+            $this->currentStep = 1; // الرجوع للصفحة الاولى بعد نجاح العملية
+
+        } catch (\Exception $e) {
+            $this->catchError = $e->getMessage();
+        }
     }
 
 
