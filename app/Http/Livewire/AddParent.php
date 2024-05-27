@@ -21,13 +21,11 @@ class AddParent extends Component
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName, [
-            'Email' => 'required|email',
             'Email' => 'required|email|unique:my_parents,email',
             'Password' => 'required',
             'Name_Father' => 'required',
             'Name_Father_en' => 'required',
             'Job_Father' => 'required',
-
             'Job_Father_en' => 'required',
             'National_ID_Father' => 'required|unique:my_parents,national_id_father',
             'Passport_ID_Father' => 'required|unique:my_parents,passport_id_father',
@@ -102,7 +100,7 @@ class AddParent extends Component
         $My_Parent->national_id_father = $this->National_ID_Father;
         $My_Parent->job_father = $this->Job_Father;
         $My_Parent->passport_id_father = $this->Passport_ID_Father;
-        $My_Parent->nationality_id_father = $this->Nationality_Father_id;
+        $My_Parent->nationality_father_id = $this->Nationality_Father_id;
         $My_Parent->religion_father_id = $this->Religion_Father_id;
         $My_Parent->blood_father_id = $this->Blood_Type_Father_id;
         $My_Parent->address_father = $this->Address_Father;
@@ -111,9 +109,9 @@ class AddParent extends Component
 
         $My_Parent->phone_mother = $this->Phone_Mother;
         $My_Parent->job_mother = $this->Job_Mother;
-        $My_Parent->national_id_father = $this->National_ID_Mother;
+        $My_Parent->national_id_mother = $this->National_ID_Mother;
         $My_Parent->passport_id_mother = $this->Passport_ID_Mother;
-        $My_Parent->nationality_id_mother = $this->Nationality_Mother_id;
+        $My_Parent->nationality_mother_id = $this->Nationality_Mother_id;
         $My_Parent->religion_mother_id = $this->Religion_Mother_id;
         $My_Parent->blood_mother_id = $this->Blood_Type_Mother_id;
         $My_Parent->address_mother = $this->Address_Mother;
