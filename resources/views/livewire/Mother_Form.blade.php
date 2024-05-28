@@ -102,7 +102,6 @@
                 @enderror
             </div>
         </div>
-
         <div class="form-group">
             <label for="exampleFormControlTextarea1">{{ trans('Parent_trans.Address_Mother') }}</label>
             <textarea class="form-control" wire:model="Address_Mother" id="exampleFormControlTextarea1" rows="4"></textarea>
@@ -115,10 +114,14 @@
             {{ trans('Parent_trans.Back') }}
         </button>
 
-
-        <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="button"
-            wire:click="secondStepSubmit">{{ trans('Parent_trans.Next') }}</button>
-
+        @if ($updateMode)
+            <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" wire:click="secondStepSubmit_edit"
+                type="button">{{ trans('Parent_trans.Next') }}
+            </button>
+        @else
+            <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="button"
+                wire:click="secondStepSubmit">{{ trans('Parent_trans.Next') }}</button>
+        @endif
 
     </div>
 </div>

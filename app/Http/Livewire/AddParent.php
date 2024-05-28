@@ -18,6 +18,8 @@ class AddParent extends Component
     public $currentStep = 1, $Email, $Password, $Name_Father, $Name_Father_en, $Job_Father, $Job_Father_en, $National_ID_Father, $Phone_Father, $Nationality_Father_id, $Blood_Type_Father_id, $Religion_Father_id, $Address_Father, $Passport_ID_Father;
     public $successMessage = '';
     public $photos;
+    public $show_table = true;
+    public $updateMode = false;
     // mother
     public $Name_Mother, $Name_Mother_en, $Job_Mother, $Job_Mother_en, $National_ID_Mother, $Phone_Mother, $Nationality_Mother_id, $Blood_Type_Mother_id, $Religion_Mother_id, $Address_Mother, $Passport_ID_Mother;
     public $catchError = false;
@@ -46,6 +48,7 @@ class AddParent extends Component
             'Nationalities' => Nationality::all(),
             'Bloods' => Blood::all(),
             'Religions' => Religion::all(),
+            'my_parents' => MyParent::all(),
         ]);
     }
 
@@ -102,7 +105,7 @@ class AddParent extends Component
             $My_Parent->password = Hash::make($this->Password);
             $My_Parent->phone_father = $this->Phone_Father;
             $My_Parent->national_id_father = $this->National_ID_Father;
-            $My_Parent->job_father = $this->Job_Father;
+            $My_Parent->job_father = ['ar' => $this->Job_Father, 'en' => $this->Job_Father_en];
             $My_Parent->passport_id_father = $this->Passport_ID_Father;
             $My_Parent->nationality_father_id = $this->Nationality_Father_id;
             $My_Parent->religion_father_id = $this->Religion_Father_id;
@@ -111,8 +114,8 @@ class AddParent extends Component
             // mother
             $My_Parent->name_mother = ['ar' => $this->Name_Mother, 'en' => $this->Name_Mother_en];
 
-            $My_Parent->phone_mother = $this->Phone_Mother;
-            $My_Parent->job_mother = $this->Job_Mother;
+            $My_Parent->phone_Mother = $this->Phone_Mother;
+            $My_Parent->job_mother = ['ar' => $this->Job_Mother, 'en' => $this->Job_Mother_en];
             $My_Parent->national_id_mother = $this->National_ID_Mother;
             $My_Parent->passport_id_mother = $this->Passport_ID_Mother;
             $My_Parent->nationality_mother_id = $this->Nationality_Mother_id;
@@ -143,7 +146,98 @@ class AddParent extends Component
             $this->catchError = $e->getMessage();
         }
     }
+    public $Parent_id;
+    public function edit($id)
+    {
+        $this->show_table = false;
+        $this->updateMode = true;
 
+        $My_Parent = MyParent::findOrFail($id);
+        $this->Parent_id = $id;
+        $this->Phone_Father = $My_Parent->phone_father;
+        $this->National_ID_Father = $My_Parent->national_id_father;
+        $this->Job_Father = $My_Parent->getTranslation('job_father', 'ar');
+        $this->Job_Father_en = $My_Parent->getTranslation('job_father', 'en');
+        $this->Job_Mother = $My_Parent->getTranslation('job_mother', 'ar');
+        $this->Job_Mother_en = $My_Parent->getTranslation('job_mother', 'en');
+
+        $this->Name_Father = $My_Parent->getTranslation('name_father', 'ar');
+        $this->Name_Father_en = $My_Parent->getTranslation('name_father', 'en');
+        $this->Name_Mother = $My_Parent->getTranslation('name_mother', 'ar');
+        $this->Name_Mother_en = $My_Parent->getTranslation('name_mother', 'en');
+
+
+        $this->Passport_ID_Father = $My_Parent->passport_id_father;
+        $this->Nationality_Father_id = $My_Parent->nationality_father_id;
+        $this->Religion_Father_id = $My_Parent->religion_father_id;
+        $this->Blood_Type_Father_id = $My_Parent->blood_father_id;
+        $this->Address_Father = $My_Parent->address_father;
+        $this->Phone_Mother = $My_Parent->phone_Mother;
+
+        $this->National_ID_Mother = $My_Parent->national_id_mother;
+        $this->Passport_ID_Mother = $My_Parent->passport_id_mother;
+        $this->Nationality_Mother_id = $My_Parent->nationality_mother_id;
+        $this->Religion_Mother_id = $My_Parent->religion_mother_id;
+        $this->Blood_Type_Mother_id = $My_Parent->blood_mother_id;
+        $this->Address_Mother = $My_Parent->address_mother;
+        $this->Email = $My_Parent->email;
+        $this->Password = '';
+    }
+    public function submitForm_edit()
+    {
+        if ($this->Parent_id) {
+            $this->validate([
+                'National_ID_Mother' => 'required|string|min:10|max:15|regex:/[0-9]{9}/',
+                'Passport_ID_Mother' => 'required|min:10|max:15',
+                'Phone_Mother' => 'required|regex:/^([0-9\s\-\*\(\)]*)$/|min:10',
+                'National_ID_Father' => 'required|string|min:10|max:15|regex:/[0-9]{9}/',
+                'Passport_ID_Father' => 'required|min:10|max:15',
+                'Phone_Father' => 'required|regex:/^([0-9\s\-\*\(\)]*)$/|min:10',
+                'Address_Mother' => 'required|string',
+                'Address_Father' => 'required|string',
+                'Password' => 'nullable|string|min:8',
+                'Job_Mother' => 'required|string',
+                'Job_Father' => 'required|string',
+            ]);
+
+            $data = [
+                'national_id_mother' => $this->National_ID_Mother,
+                'passport_id_mother' => $this->Passport_ID_Mother,
+                'national_id_father' => $this->National_ID_Father,
+                'passport_id_father' => $this->Passport_ID_Father,
+                'address_mother' => $this->Address_Mother,
+                'address_father' => $this->Address_Father,
+                'phone_Mother' => $this->Phone_Mother,
+                'phone_father' => $this->Phone_Father,
+                'job_father' =>  ['en' => $this->Job_Father_en, 'ar' => $this->Job_Father],
+                'job_mother' =>  ['en' => $this->Job_Mother_en, 'ar' => $this->Job_Mother],
+                'name_father' => ['en' => $this->Name_Father_en, 'ar' => $this->Name_Father],
+                'name_mother' => ['en' => $this->Name_Mother_en, 'ar' => $this->Name_Mother],
+
+            ];
+
+            if ($this->Password) {
+                $data['password'] = Hash::make($this->Password);
+            }
+
+            $My_Parent = MyParent::findOrFail($this->Parent_id);
+            $My_Parent->update($data);
+
+            session()->flash('success', trans('messages.success'));
+        } else {
+            session()->flash('error', trans('messages.error'));
+        }
+
+        return redirect()->to('/add_parent');
+    }
+    public function delete($id)
+    {
+    }
+
+    public function showAddForm()
+    {
+        $this->show_table = false;
+    }
 
     // clear form 
     public function clearForm()
@@ -175,6 +269,8 @@ class AddParent extends Component
     }
     public function firstStepSubmit_edit()
     {
+        $this->updateMode = true;
+        $this->currentStep = 2;
     }
     public function back($step)
     {
@@ -182,6 +278,8 @@ class AddParent extends Component
     }
     public function secondStepSubmit_edit()
     {
+        $this->updateMode = true;
+        $this->currentStep = 3;
     }
 }
 /*
