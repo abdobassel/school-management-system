@@ -230,16 +230,52 @@ class AddParent extends Component
 
         return redirect()->to('/add_parent');
     }
+    // حذف البيانات مع الملفات بتحذير قبل الحذف واذا لم يجد ملفات يحذف مباشرة بدون تحذير
+    public $showConfirmation = false;
+    public function confirmDelete($parentId)
+    {
+        $this->Parent_id = $parentId;
+        $parent = MyParent::findOrFail($this->Parent_id);
+
+        if ($parent->parentsAtchments()->count() > 0) {
+            $this->showConfirmation = true;
+        } else {
+            $this->deleteParent();
+        }
+    }
+
+    public function deleteParent()
+    {
+        try {
+            $parent = MyParent::findOrFail($this->Parent_id);
+
+            if ($parent->parentsAtchments()->count() > 0) {
+                $parent->parentsAtchments->each->delete();
+            }
+
+            $parent->delete();
+            $this->showConfirmation = false;
+            session()->flash('message', 'تم حذف العنصر بنجاح!');
+            return redirect()->to('/add_parent');
+        } catch (\Exception $e) {
+
+            session()->flash('warning', $e->getMessage());
+        }
+    }
     public function delete($id)
     {
 
 
         try {
+
             $parent =  MyParent::findOrFail($id);
             if ($parent->parentsAtchments()->count() > 0) {
+
                 session()->flash('warning', 'لا يمكن حذف هذا الوالدين لأن لديهم مرفقات مرتبطة.');
             } else {
                 $parent->delete();
+                $parent->parentsAtchments->each->delete();
+
                 toastr()->success(trans('messages.success'));
             }
         } catch (\Exception $e) {
@@ -248,6 +284,9 @@ class AddParent extends Component
         }
 
         return redirect()->to('/add_parent');
+    }
+    public function deleteConfirm()
+    {
     }
 
     public function showAddForm()

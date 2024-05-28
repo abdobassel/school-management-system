@@ -30,10 +30,52 @@
                     <td>
                         <button wire:click="edit({{ $my_parent->id }})" title="{{ trans('Grades_trans.Edit') }}"
                             class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
-                        <button type="button" class="btn btn-danger btn-sm" wire:click="delete({{ $my_parent->id }})"
-                            title="{{ trans('Grades_trans.Delete') }}"><i class="fa fa-trash"></i></button>
+
+                        <button wire:click="confirmDelete({{ $my_parent->id }})"
+                            title="{{ trans('Grades_trans.Delete') }}" class="btn btn-danger btn-sm"><i
+                                class="fa fa-trash"></i></button>
+
+
+                        @if ($showConfirmation)
+                            <!-- نافذة تأكيد الحذف -->
+                            <div class="modal fade show" id="confirmDeleteModal" tabindex="-1" role="dialog"
+                                aria-labelledby="confirmDeleteModalLabel" aria-hidden="true" style="display: block;">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="confirmDeleteModalLabel">تأكيد الحذف</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            هل أنت متأكد أنك تريد حذف هذا العنصر؟
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">إلغاء</button>
+                                            <!-- زر الحذف بعد التأكيد -->
+                                            <button type="button" wire:click="deleteParent"
+                                                class="btn btn-danger">حذف</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
+
                     </td>
                 </tr>
             @endforeach
     </table>
 </div>
+<script>
+    function confirmDelete(parentId) {
+        // تخزين القيمة في متغير مؤقت
+        window.parentIdToDelete = parentId;
+
+        // عرض نافذة تأكيد الحذف
+        $('#confirmDeleteModal').modal('show');
+    }
+</script>
