@@ -232,6 +232,22 @@ class AddParent extends Component
     }
     public function delete($id)
     {
+
+
+        try {
+            $parent =  MyParent::findOrFail($id);
+            if ($parent->parentsAtchments()->count() > 0) {
+                session()->flash('warning', 'لا يمكن حذف هذا الوالدين لأن لديهم مرفقات مرتبطة.');
+            } else {
+                $parent->delete();
+                toastr()->success(trans('messages.success'));
+            }
+        } catch (\Exception $e) {
+            session()->flash('warning', 'لا يمكن حذف هذا الوالدين لأن لديهم مرفقات مرتبطة.');
+            session()->flash('warning', $e->getMessage());
+        }
+
+        return redirect()->to('/add_parent');
     }
 
     public function showAddForm()
