@@ -11,6 +11,7 @@ interface TeacherRepositoryInterface
     public function getAllTeachers();
     public function editTeacher($id);
     public function updateTeacher($request);
+    public function deleteTeachers($request);
 
     public function getAllGender();
     public function getAllSpecializations();

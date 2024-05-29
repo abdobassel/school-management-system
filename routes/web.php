@@ -68,6 +68,7 @@ Route::group(
         Route::post('/teachers/create', [TeacherController::class, 'store'])->name('teachers.store');
         Route::get('/teachers/edit/{id}', [TeacherController::class, 'edit'])->name('teachers.edit');
         Route::patch('/teachers/update', [TeacherController::class, 'update'])->name('teachers.update');
+        Route::delete('/teachers', [TeacherController::class, 'destroy'])->name('teachers.destroy');
     }
 
 );

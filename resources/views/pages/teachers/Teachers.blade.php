@@ -64,7 +64,7 @@
                                                 tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                 aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
-                                                    <form action="#" method="post">
+                                                    <form action="{{ route('teachers.destroy') }}" method="post">
                                                         {{ method_field('delete') }}
                                                         {{ csrf_field() }}
                                                         <div class="modal-content">

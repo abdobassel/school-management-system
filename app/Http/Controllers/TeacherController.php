@@ -56,8 +56,8 @@ class TeacherController extends Controller
     }
 
 
-    public function destroy(Teacher $teacher)
+    public function destroy(Request $request)
     {
-        //
+        return $this->teacher->deleteTeachers($request);
     }
 }
