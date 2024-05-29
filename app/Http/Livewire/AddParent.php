@@ -10,6 +10,7 @@ use Livewire\Component;
 use App\ParentAtachment;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AddParent extends Component
 { //father
@@ -249,8 +250,32 @@ class AddParent extends Component
         try {
             $parent = MyParent::findOrFail($this->Parent_id);
 
+            // التحقق مما إذا كان هناك مرفقات مرتبطة بالوالد
+            // التحقق مما إذا كان هناك مرفقات مرتبطة بالوالد
             if ($parent->parentsAtchments()->count() > 0) {
-                $parent->parentsAtchments->each->delete();
+                // المرور على كل مرفق مرتبط بالوالد
+                foreach ($parent->parentsAtchments as $attachment) {
+                    // تحديد المسار الكامل إلى الملف
+
+                    $filePath = storage_path('app/parent_attachments/' . $parent->National_ID_Father . '/' . $attachment->file_name);
+
+                    // التحقق مما إذا كان الملف الفعلي موجودًا على السيرفر
+                    if (Storage::exists($filePath)) {
+                        // حذف الملف من السيرفر
+                        Storage::delete($filePath);
+                    }
+                    // حذف السجل الخاص بالمرفق من قاعدة البيانات
+                    $attachment->delete();
+
+                    // حذف السجل الخاص بالمرفق من قاعدة البيانات
+
+                }
+
+                // حذف المجلد الفارغ بعد حذف الملفات إذا لم يعد يحتوي على أي ملفات أخرى
+                $directoryPath = storage_path('app/parent_attachments/' . $parent->National_ID_Father);
+                if (file_exists($directoryPath) && count(scandir($directoryPath)) === 2) { // تحقق من أن المجلد فارغ
+                    rmdir($directoryPath); // حذف المجلد
+                }
             }
 
             $parent->delete();
