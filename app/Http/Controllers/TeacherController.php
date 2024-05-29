@@ -6,6 +6,7 @@ use App\Gender;
 use App\Teacher;
 use App\Specialization;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\Return_;
 use App\Repository\TeacherRepositoryInterface;
 
 class TeacherController extends Controller
@@ -23,11 +24,7 @@ class TeacherController extends Controller
         return view('pages.teachers.Teachers', compact('teachers'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         $specializations =  $this->teacher->getAllSpecializations();
@@ -41,46 +38,24 @@ class TeacherController extends Controller
         return $this->teacher->storeTeachers($request);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
     public function show(Teacher $teacher)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Teacher $teacher)
+
+    public function edit($id)
     {
-        //
+        return $this->teacher->editTeacher($id);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Teacher $teacher)
+
+    public function update(Request $request)
     {
-        //
+        return $this->teacher->updateTeacher($request);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Teacher $teacher)
     {
         //

@@ -47,8 +47,11 @@
                                                 <td>{{ $teacher->joined_date }}</td>
                                                 <td>{{ $teacher->specialization->name }}</td>
                                                 <td>
-                                                    <a href="#" class="btn btn-info btn-sm" role="button"
+                                                    <a href="{{ route('teachers.edit', ['id' => $teacher->id]) }}"
+                                                        class="btn btn-info btn-sm" role="button"
                                                         aria-pressed="true"><i class="fa fa-edit"></i></a>
+
+
                                                     <button type="button" class="btn btn-danger btn-sm"
                                                         data-toggle="modal"
                                                         data-target="#delete_Teacher{{ $teacher->id }}"
