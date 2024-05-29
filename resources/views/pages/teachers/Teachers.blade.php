@@ -43,9 +43,9 @@
                                                 <?php $i++; ?>
                                                 <td>{{ $i }}</td>
                                                 <td>{{ $teacher->name }}</td>
-                                                <td>{{ $teacher->genders->name }}</td>
+                                                <td>{{ $teacher->gender->name }}</td>
                                                 <td>{{ $teacher->joined_date }}</td>
-                                                <td>{{ $teacher->specializations->name }}</td>
+                                                <td>{{ $teacher->specialization->name }}</td>
                                                 <td>
                                                     <a href="#" class="btn btn-info btn-sm" role="button"
                                                         aria-pressed="true"><i class="fa fa-edit"></i></a>

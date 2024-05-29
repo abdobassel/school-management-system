@@ -14,13 +14,14 @@ class Teacher extends Model
 
 
 
-    public function genders()
+    public function gender()
     {
-        $this->hasMany(Gender::class, 'gender_id');
+        return $this->belongsTo(Gender::class, 'gender_id');
     }
 
-    public function specializations()
+    // Define the relationship with Specialization
+    public function specialization()
     {
-        return $this->hasMany(Specialization::class, 'specialization_id');
+        return $this->belongsTo(Specialization::class, 'specialization_id');
     }
 }

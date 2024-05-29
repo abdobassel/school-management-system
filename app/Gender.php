@@ -15,6 +15,6 @@ class Gender extends Model
 
     public function teacher()
     {
-        return $this->belongsTo(Teacher::class, 'gender_id');
+        return $this->hasMany(Teacher::class, 'gender_id');
     }
 }

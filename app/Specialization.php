@@ -16,6 +16,6 @@ class Specialization extends Model
 
     public function teacher()
     {
-        return $this->belongsTo(Teacher::class, 'specialization_id');
+        return $this->hasMany(Teacher::class, 'specialization_id');
     }
 }
