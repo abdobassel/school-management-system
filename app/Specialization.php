@@ -12,4 +12,10 @@ class Specialization extends Model
     public $translatable = ['name'];
     public $timstamps = true;
     protected $fillable = ['name'];
+
+
+    public function teacher()
+    {
+        return $this->belongsTo(Teacher::class, 'specialization_id');
+    }
 }

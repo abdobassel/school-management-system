@@ -11,4 +11,10 @@ class Gender extends Model
     public $translatable = ['name'];
     public $timstamps = true;
     protected $fillable = ['name'];
+
+
+    public function teacher()
+    {
+        return $this->belongsTo(Teacher::class, 'gender_id');
+    }
 }

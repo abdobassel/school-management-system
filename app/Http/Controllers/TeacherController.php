@@ -16,7 +16,9 @@ class TeacherController extends Controller
 
     public function index()
     {
-        return $this->teacher->getAllTeachers();
+        $teachers =  $this->teacher->getAllTeachers();
+
+        return view('pages.teachers.Teachers', compact('teachers'));
     }
 
     /**
