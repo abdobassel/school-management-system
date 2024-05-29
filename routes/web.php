@@ -64,6 +64,8 @@ Route::group(
 
         // teachers
         Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers.index');
+        Route::get('/teachers/create', [TeacherController::class, 'create'])->name('teachers.create');
+        Route::post('/teachers/create', [TeacherController::class, 'store'])->name('teachers.store');
     }
 
 );

@@ -21,7 +21,7 @@
                 <div class="col-xl-12 mb-30">
                     <div class="card card-statistics h-100">
                         <div class="card-body">
-                            <a href="" class="btn btn-success btn-sm" role="button"
+                            <a href="{{ route('teachers.create') }}" class="btn btn-success btn-sm" role="button"
                                 aria-pressed="true">{{ trans('Teacher_trans.Add_Teacher') }}</a><br><br>
                             <div class="table-responsive">
                                 <table id="datatable" class="table  table-hover table-sm table-bordered p-0"

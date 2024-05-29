@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Gender;
 use App\Teacher;
+use App\Specialization;
 use Illuminate\Http\Request;
 use App\Repository\TeacherRepositoryInterface;
 
@@ -28,18 +30,15 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        //
+        $specializations =  $this->teacher->getAllSpecializations();
+        $genders = $this->teacher->getAllGender();
+        return view('pages.teachers.create', compact('genders', 'specializations'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        return $this->teacher->storeTeachers($request);
     }
 
     /**
