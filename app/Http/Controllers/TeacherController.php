@@ -4,17 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Teacher;
 use Illuminate\Http\Request;
+use App\Repository\TeacherRepositoryInterface;
 
 class TeacherController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $teacher;
+    public function __construct(TeacherRepositoryInterface $teacher)
+    {
+        $this->teacher = $teacher;
+    }
+
     public function index()
     {
-        //
+        return $this->teacher->getAllTeachers();
     }
 
     /**

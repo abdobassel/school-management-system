@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\ClassroomController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -59,6 +60,10 @@ Route::group(
         Route::delete('/sections', [SectionController::class, 'destroy'])->name('sections.destroy');
 
         Route::view('add_parent', 'livewire.Show_Form');
+
+
+        // teachers
+        Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers.index');
     }
 
 );
