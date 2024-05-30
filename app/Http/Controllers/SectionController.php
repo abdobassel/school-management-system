@@ -72,7 +72,13 @@ class SectionController extends Controller
             $Sections->grade_id = $request->Grade_id;
             $Sections->classroom_id = $request->Class_id;
             $Sections->status = 1;
+
             $Sections->save();
+            // إرفاق المعلمين بعد حفظ القسم لضمان أن معرّف القسم ليس فارغاً
+            $Sections->teachers()->attach($request->teacher_id);
+            // هنا attach يجب ان تكون بعد حفظ الققسم لضمان الحصول على اي دي قسم 
+
+
             toastr()->success(trans('messages.success'));
             return redirect()->route('sections.index');
         } catch (\Exception $e) {
