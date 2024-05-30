@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Grade;
 use App\Section;
+use App\Teacher;
 use App\Classroom;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,8 @@ class SectionController extends Controller
     {
         $Grades = Grade::with('sections')->get();
         $list_Grades = Grade::all();
-        return view('pages.Sections.sections', compact('Grades', 'list_Grades'));
+        $teachers = Teacher::all();
+        return view('pages.Sections.sections', compact('Grades', 'list_Grades', 'teachers'));
     }
 
     public function getclasses($id)
