@@ -17,10 +17,18 @@ class SectionController extends Controller
      */
     public function index()
     {
+
         $Grades = Grade::with('sections')->get();
         $list_Grades = Grade::all();
         $teachers = Teacher::all();
-        return view('pages.Sections.sections', compact('Grades', 'list_Grades', 'teachers'));
+        // $sectionTeachersIds = []; // قائمة بمعرفات المعلمين المرتبطين بالقسم
+        // foreach ($Grades as $grade) {
+        //     foreach ($grade->sections as $section) {
+        //         $sectionTeachersIds = array_merge($sectionTeachersIds, $section->teachers()->pluck('id')->toArray());
+        //     }
+        // }
+        // $sectionTeachersIds = array_unique($sectionTeachersIds);
+        return view('pages.Sections.sections', compact('Grades', 'list_Grades', 'teachers',));
     }
 
     public function getclasses($id)
@@ -147,6 +155,13 @@ class SectionController extends Controller
                 $Sections->status = 1;
             } else {
                 $Sections->status = 2;
+            }
+
+            if (isset($request->teacher_id)) {
+                // إذا كان هناك معلمون جدد في الطلب، قم بمزامنة العلاقات
+                $Sections->teachers()->sync($request->teacher_id);
+            } else {
+                $Sections->teachers()->sync(array());
             }
             $Sections->save();
 

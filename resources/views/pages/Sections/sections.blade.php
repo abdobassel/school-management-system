@@ -203,7 +203,28 @@
                                                                                                 @endif
                                                                                                 <label
                                                                                                     class="form-check-label"
-                                                                                                    for="exampleCheck1">{{ trans('Sections_trans.Status') }}</label>
+                                                                                                    for="exampleCheck1">{{ trans('Sections_trans.Status') }}</label><br>
+                                                                                                <select multiple
+                                                                                                    for="inputName"
+                                                                                                    class="form-control"
+                                                                                                    name="teacher_id[]"
+                                                                                                    id="exampleFormControl">
+                                                                                                    @foreach ($list_Sections->teachers as $teacher)
+                                                                                                        <option selected
+                                                                                                            value="{{ $teacher['id'] }}">
+                                                                                                            {{ $teacher['name'] }}
+                                                                                                        </option>
+                                                                                                    @endforeach
+
+                                                                                                    @foreach ($teachers as $teacher)
+                                                                                                        <option
+                                                                                                            value="{{ $teacher->id }}">
+                                                                                                            {{ $teacher->name }}
+                                                                                                        </option>
+                                                                                                    @endforeach
+                                                                                                </select>
+
+
                                                                                             </div>
                                                                                         </div>
 
