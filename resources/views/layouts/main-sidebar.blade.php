@@ -91,6 +91,20 @@
 
                         </ul>
                     </li>
+                    <!-- students-->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#students-menu">
+                            <div class="pull-left"><i class="fas fa-chalkboard"></i></i><span
+                                    class="right-nav-text">{{ trans('main_trans.students') }}</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="students-menu" class="collapse" data-parent="#sidebarnav">
+                            <li><a href="{{ route('students.create') }}">{{ trans('main_trans.add_student') }}</a>
+                            </li>
+
+                        </ul>
+                    </li>
                     <!-- menu item todo-->
                     <li>
                         <a href="todo-list.html"><i class="ti-menu-alt"></i><span class="right-nav-text">Todo
@@ -104,7 +118,8 @@
                     <!-- menu item mailbox-->
                     <li>
                         <a href="mail-box.html"><i class="ti-email"></i><span class="right-nav-text">Mail
-                                box</span> <span class="badge badge-pill badge-warning float-right mt-1">HOT</span> </a>
+                                box</span> <span class="badge badge-pill badge-warning float-right mt-1">HOT</span>
+                        </a>
                     </li>
                     <!-- menu item Charts-->
                     <li>

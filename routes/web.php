@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\ClassroomController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -69,6 +70,15 @@ Route::group(
         Route::get('/teachers/edit/{id}', [TeacherController::class, 'edit'])->name('teachers.edit');
         Route::patch('/teachers/update', [TeacherController::class, 'update'])->name('teachers.update');
         Route::delete('/teachers', [TeacherController::class, 'destroy'])->name('teachers.destroy');
+
+        //students
+        Route::get('/students/create', [StudentController::class, 'create'])->name('students.create');
+        Route::post('/students/create', [StudentController::class, 'store'])->name('students.store');
+        // Route::get('/teachers/edit/{id}', [TeacherController::class, 'edit'])->name('teachers.edit');
+        //Route::patch('/teachers/update', [TeacherController::class, 'update'])->name('teachers.update');
+        //Route::delete('/teachers', [TeacherController::class, 'destroy'])->name('teachers.destroy');
+
+
     }
 
 );
