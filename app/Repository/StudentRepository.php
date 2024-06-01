@@ -30,6 +30,7 @@ class StudentRepository implements StudentRepositoryInterface
         return view('pages.students.add', $data);
     }
 
+
     public function getClassesrooms($id)
     {
         $list_classes = Classroom::where('grade_id', $id)->pluck('name', 'id');
@@ -67,6 +68,12 @@ class StudentRepository implements StudentRepositoryInterface
         }
     }
     public function edit()
+    {
+    }
+
+    // delete 
+
+    public function delete($id)
     {
     }
 }

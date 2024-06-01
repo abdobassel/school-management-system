@@ -72,12 +72,15 @@ Route::group(
         Route::delete('/teachers', [TeacherController::class, 'destroy'])->name('teachers.destroy');
 
         //students
+        Route::get('/students', [StudentController::class, 'index'])->name('students.index');
+
         Route::get('/students/create', [StudentController::class, 'create'])->name('students.create');
         Route::post('/students/create', [StudentController::class, 'store'])->name('students.store');
         // options select class and grades and sections
 
         Route::get('/Get_classrooms/{id}', [StudentController::class, 'getClassesrooms']);
         Route::get('/Get_Sections/{id}', [StudentController::class, 'getSections']);
+
 
         // Route::get('/teachers/edit/{id}', [TeacherController::class, 'edit'])->name('teachers.edit');
         //Route::patch('/teachers/update', [TeacherController::class, 'update'])->name('teachers.update');
