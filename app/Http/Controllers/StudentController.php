@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Student;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreStudentsRequest;
 use App\Repository\StudentRepositoryInterface;
 
 class StudentController extends Controller
@@ -35,15 +36,10 @@ class StudentController extends Controller
         return $this->student->getSections($id);
     }
     ////////////////////////////////////////////////////////
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store(StoreStudentsRequest $request)
     {
-        //
+        return $this->student->store($request);
     }
 
     /**

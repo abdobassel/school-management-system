@@ -12,6 +12,9 @@ class Student extends Model
 
     use HasTranslations;
     public $translatable = ['name'];
+    protected $fillable = [
+        'name', 'email', 'password', 'gender_id', 'nationalitiy_id', 'blood_id', 'Date_Birth', 'grade_id', 'classroom_id', 'section_id', 'parent_id', 'academic_year',
+    ];
     protected $guarded = [];
 
     public function gender()

@@ -85,7 +85,7 @@
                             <div class="form-group">
                                 <label for="nal_id">{{ trans('Students_trans.Nationality') }} : <span
                                         class="text-danger">*</span></label>
-                                <select class="custom-select mr-sm-2" name="nationalitie_id">
+                                <select class="custom-select mr-sm-2" name="nationality_id">
                                     <option selected disabled>{{ trans('Parent_trans.Choose') }}...</option>
                                     @foreach ($nationals as $nal)
                                         <option value="{{ $nal->id }}">{{ $nal->name }}</option>

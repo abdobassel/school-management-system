@@ -22,10 +22,10 @@ class StoreStudentsRequest extends FormRequest
         return [
             'name_ar' => 'required',
             'name_en' => 'required',
-            'email' => 'required|email|unique:students,email,' . $this->id,
+            'email' => 'required|email|unique:students,email',
             'password' => 'required|string|min:6|max:10',
             'gender_id' => 'required',
-            'nationalitie_id' => 'required',
+            'nationality_id' => 'required',
             'blood_id' => 'required',
             'Date_Birth' => 'required|date|date_format:Y-m-d',
             'Grade_id' => 'required',
