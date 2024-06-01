@@ -10,4 +10,6 @@ interface StudentRepositoryInterface
     public function create();
     public function store();
     public function edit();
+    public function getClassesrooms($id);
+    public function getSections($id);
 }

@@ -28,7 +28,7 @@ class SectionController extends Controller
         //     }
         // }
         // $sectionTeachersIds = array_unique($sectionTeachersIds);
-        return view('pages.Sections.sections', compact('Grades', 'list_Grades', 'teachers',));
+        return view('pages.Sections.sections', compact('Grades', 'list_Grades', 'teachers'));
     }
 
     public function getclasses($id)

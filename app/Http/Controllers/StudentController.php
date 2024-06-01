@@ -24,7 +24,17 @@ class StudentController extends Controller
     {
         return $this->student->create();
     }
+    ///////// with ajax code in footer scripts file ////////
+    public function getClassesrooms($id)
+    {
+        return $this->student->getClassesrooms($id);
+    }
 
+    public function getSections($id)
+    {
+        return $this->student->getSections($id);
+    }
+    ////////////////////////////////////////////////////////
     /**
      * Store a newly created resource in storage.
      *
