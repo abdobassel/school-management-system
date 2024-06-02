@@ -103,4 +103,30 @@
 @section('js')
 @toastr_js
 @toastr_render
+<script>
+    // var mr = new XMLHttpRequest();
+    // mr.onreadystatechange = function() {
+    //     if (this.readyState == 4 && this.status == 200) {
+    //         console.log(this.responseText);
+    //     }
+    // };
+    // mr.open('GET',
+    //     "http://api.github.com/users/abdobassel/repos",
+    //     true);
+    // mr.send();
+
+    $(document).ready(function() {
+        $.ajax({
+            type: "GET",
+            url: "http://api.github.com/users/abdobassel/repos",
+
+
+            success: function(data, status, xhr) {
+                console.log(data);
+                console.log(status);
+                console.log(xhr);
+            }
+        });
+    });
+</script>
 @endsection
