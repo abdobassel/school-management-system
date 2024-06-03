@@ -95,7 +95,30 @@ class StudentRepository implements StudentRepositoryInterface
     }
     public function  upload_attachment($request)
     {
-        return $request;
+
+        try {
+            if ($request->hasFile('photos')) {
+                foreach ($request->file('photos') as $file) {
+                    $name = $file->getClientOriginalName();
+                    $path =   public_path('attachments/students/' . $request->student_name); //from show blade 
+                    if (!file_exists($path)) {
+                        mkdir($path, 0777, true);
+                    }
+                    $file->move($path, $name);
+
+
+                    $images = new Image();
+                    $images->filename = $name;
+                    $images->imageable_type = 'App\Student';
+                    $images->imageable_id = $request->student_id;
+                    $images->save();
+                }
+            }
+            toastr()->success(trans('messages.success'));
+            return redirect()->route('students.show', $request->student_id);
+        } catch (\Exception $e) {
+            toastr()->error(['error' => $e->getMessage()]);
+        }
     }
     // delete 
 
