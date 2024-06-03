@@ -79,8 +79,12 @@ Route::group(
 
         Route::delete('/students', [StudentController::class, 'destroy'])->name('students.destroy');
         Route::get('/students/{id}', [StudentController::class, 'show'])->name('students.show');
-
+        // upload
         Route::post('upload_attachment', [StudentController::class, 'upload_attachment'])->name('students.upload_attachment');
+        // dwonload
+        Route::get('download_attachment/{studentname}/{filename}', [StudentController::class, 'download_attachment'])->name('students.download_attachment');
+        // delete attachment
+        Route::post('delete_attachment', [StudentController::class, 'deleteAttachment'])->name('students.delete_attachment');
 
         // options select class and grades and sections
 

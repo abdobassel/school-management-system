@@ -120,6 +120,12 @@ class StudentRepository implements StudentRepositoryInterface
             toastr()->error(['error' => $e->getMessage()]);
         }
     }
+
+    // download 
+    public function download_attachment($studentName, $filename)
+    {
+        return response()->download(public_path('attachments/students/' . $studentName . '/' . $filename));
+    }
     // delete 
 
     public function delete($id)
@@ -133,6 +139,26 @@ class StudentRepository implements StudentRepositoryInterface
 
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
+    }
+    // delete attachment
+    public function deleteAttachment($request)
+    {
+        $image = Image::findOrFail($request->id);
+
+        // حدد المسار الكامل للصورة على السيرفر
+        $studentName = $request->student_name;
+        $filePath = public_path('\attachments/students/' . $studentName . '/' . $image->filename);
+        // \ => بتفرق
+
+        // حذف الصورة من قاعدة البيانات
+        $image->delete();
+
+        // تحقق من وجود الملف واحذفه
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
+        toastr()->success(trans('messages.Delete'));
+        return redirect()->back();
     }
     // show
 

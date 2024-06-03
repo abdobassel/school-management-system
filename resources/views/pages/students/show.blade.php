@@ -116,7 +116,8 @@
                                                     <td>{{ $attachment->filename }}</td>
                                                     <td>{{ $attachment->created_at->diffForHumans() }}</td>
                                                     <td colspan="2">
-                                                        <a class="btn btn-outline-info btn-sm" href=""
+                                                        <a class="btn btn-outline-info btn-sm"
+                                                            href="{{ url('download_attachment') }}/{{ $attachment->imageable->name }}/{{ $attachment->filename }}"
                                                             role="button"><i class="fas fa-download"></i>&nbsp;
                                                             {{ trans('Students_trans.Download') }}</a>
 
@@ -128,6 +129,7 @@
 
                                                     </td>
                                                 </tr>
+                                                @include('pages.students.delete_img')
                                             @endforeach
                                         </tbody>
                                     </table>
