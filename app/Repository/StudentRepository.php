@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Blood;
 use App\Grade;
+use App\Image;
 use App\Gender;
 use App\Section;
 use App\Student;
@@ -11,6 +12,7 @@ use App\MyParent;
 use App\Classroom;
 use App\Nationality;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Repository\StudentRepositoryInterface;
 
@@ -44,6 +46,7 @@ class StudentRepository implements StudentRepositoryInterface
     }
     public function store($request)
     {
+        DB::beginTransaction(); // هنا يوجد جدولين يجب ان يكونا بدون مشاكل ليتم الحفظ
         try {
 
             $students = new Student();
@@ -60,10 +63,30 @@ class StudentRepository implements StudentRepositoryInterface
             $students->parent_id = $request->parent_id;
             $students->academic_year = $request->academic_year;
             $students->save();
+            // photos 
+            if ($request->hasFile('photos')) {
+                foreach ($request->file('photos') as $file) {
+                    $name = $file->getClientOriginalName();
+                    $path =   public_path('attachments/students/' . $request->name_en);
+                    if (!file_exists($path)) {
+                        mkdir($path, 0777, true);
+                    }
+                    $file->move($path, $name);
+
+
+                    $images = new Image();
+                    $images->filename = $name;
+                    $images->imageable_type = 'App\Student';
+                    $images->imageable_id = $students->id;
+                    $images->save();
+                }
+            }
+            DB::commit(); // اذا كان الجدولين تمام من غير مشاكل
+
             toastr()->success(trans('messages.success'));
             return redirect()->route('students.create');
         } catch (\Exception $e) {
-
+            DB::rollback(); // حذف البيانات من الداتا بيز لو وجدت اخطاء 
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }

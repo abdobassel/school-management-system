@@ -29,4 +29,8 @@ class Teacher extends Model
     {
         return $this->belongsToMany(Section::class, 'section_teacher');
     }
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
 }

@@ -52,4 +52,10 @@ class Student extends Model
     {
         return $this->belongsTo(MyParent::class, 'parent_id');
     }
+
+    // images
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
 }
