@@ -93,7 +93,10 @@ class StudentRepository implements StudentRepositoryInterface
     public function edit()
     {
     }
-
+    public function  upload_attachment($request)
+    {
+        return $request;
+    }
     // delete 
 
     public function delete($id)
@@ -112,7 +115,7 @@ class StudentRepository implements StudentRepositoryInterface
 
     public function show($id)
     {
-        $student = Student::findOrFail($id)->first();
+        $student = Student::findOrFail($id);
         return view('pages.students.show', compact('student'));
     }
 }

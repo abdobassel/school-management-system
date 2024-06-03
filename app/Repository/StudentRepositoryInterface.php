@@ -14,4 +14,5 @@ interface StudentRepositoryInterface
     public function getSections($id);
     public function delete($id);
     public function show($id);
+    public function upload_attachment($request);
 }

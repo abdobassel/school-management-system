@@ -76,7 +76,8 @@
                             <div class="tab-pane fade" id="profile-02" role="tabpanel" aria-labelledby="profile-02-tab">
                                 <div class="card card-statistics">
                                     <div class="card-body">
-                                        <form method="post" action="" enctype="multipart/form-data">
+                                        <form method="post" action="{{ route('students.upload_attachment') }}"
+                                            enctype="multipart/form-data">
                                             {{ csrf_field() }}
                                             <div class="col-md-3">
                                                 <div class="form-group">
@@ -109,7 +110,25 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <!-- code attachment students -->
+                                            @foreach ($student->images as $attachment)
+                                                <tr style='text-align:center;vertical-align:middle'>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $attachment->filename }}</td>
+                                                    <td>{{ $attachment->created_at->diffForHumans() }}</td>
+                                                    <td colspan="2">
+                                                        <a class="btn btn-outline-info btn-sm" href=""
+                                                            role="button"><i class="fas fa-download"></i>&nbsp;
+                                                            {{ trans('Students_trans.Download') }}</a>
+
+                                                        <button type="button" class="btn btn-outline-danger btn-sm"
+                                                            data-toggle="modal"
+                                                            data-target="#Delete_img{{ $attachment->id }}"
+                                                            title="{{ trans('Grades_trans.Delete') }}">{{ trans('Students_trans.delete') }}
+                                                        </button>
+
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

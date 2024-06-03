@@ -21,7 +21,11 @@ class StudentController extends Controller
 
         return view('pages.students.students', compact('students'));
     }
-
+    ////// upload attachment student 
+    public function  upload_attachment(Request $request)
+    {
+        return $this->student->upload_attachment($request);
+    }
 
     public function create()
     {

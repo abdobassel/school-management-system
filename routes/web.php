@@ -80,6 +80,8 @@ Route::group(
         Route::delete('/students', [StudentController::class, 'destroy'])->name('students.destroy');
         Route::get('/students/{id}', [StudentController::class, 'show'])->name('students.show');
 
+        Route::post('upload_attachment', [StudentController::class, 'upload_attachment'])->name('students.upload_attachment');
+
         // options select class and grades and sections
 
         Route::get('/Get_classrooms/{id}', [StudentController::class, 'getClassesrooms']);
