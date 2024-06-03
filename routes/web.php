@@ -76,7 +76,9 @@ Route::group(
 
         Route::get('/students/create', [StudentController::class, 'create'])->name('students.create');
         Route::post('/students/create', [StudentController::class, 'store'])->name('students.store');
+
         Route::delete('/students', [StudentController::class, 'destroy'])->name('students.destroy');
+        Route::get('/students/{id}', [StudentController::class, 'show'])->name('students.show');
 
         // options select class and grades and sections
 

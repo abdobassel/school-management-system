@@ -37,6 +37,11 @@ class Student extends Model
         return $this->belongsTo(Classroom::class, 'classroom_id');
     }
 
+    public function nationality()
+    {
+        return $this->belongsTo(Nationality::class, 'nationalitiy_id');
+    }
+
     // علاقة بين الطلاب الاقسام الدراسية لجلب اسم القسم  في جدول الطلاب
 
     public function section()

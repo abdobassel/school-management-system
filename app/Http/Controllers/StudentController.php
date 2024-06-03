@@ -50,9 +50,14 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
-    {
-        //
+    public function show($id)
+    {   /////// test /////////////
+        // $data = [];
+        // $data['student'] = $this->student->show($id);
+        // $data['status'] = 'success';
+        // return $data;
+        ////////////////////////////////
+        return $this->student->show($id);
     }
 
     /**

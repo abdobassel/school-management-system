@@ -85,4 +85,11 @@ class StudentRepository implements StudentRepositoryInterface
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
+    // show
+
+    public function show($id)
+    {
+        $student = Student::findOrFail($id)->first();
+        return view('pages.students.show', compact('student'));
+    }
 }

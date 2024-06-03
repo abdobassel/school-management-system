@@ -56,7 +56,8 @@
                                                             العمليات
                                                         </a>
                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                            <a class="dropdown-item" href=""><i
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('students.show', $student->id) }}"><i
                                                                     style="color: #ffc107"
                                                                     class="far fa-eye "></i>&nbsp; عرض بيانات الطالب</a>
                                                             <a class="dropdown-item" href=""><i
