@@ -12,4 +12,5 @@ interface StudentRepositoryInterface
     public function edit();
     public function getClassesrooms($id);
     public function getSections($id);
+    public function delete($id);
 }

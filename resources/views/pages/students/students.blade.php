@@ -125,6 +125,10 @@
                 console.log(data);
                 console.log(status);
                 console.log(xhr);
+                $.each(data, function(key, value) {
+
+                    console.log(value.name); // name of repos
+                });
             }
         });
     });

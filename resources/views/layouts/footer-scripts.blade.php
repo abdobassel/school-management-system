@@ -83,11 +83,13 @@
                     type: "GET",
                     dataType: "json",
                     success: function(data) {
+
                         $('select[name="section_id"]').empty();
                         $('select[name="section_id"]').append(
                             '<option selected disabled>{{ trans('Parent_trans.Choose') }}...</option>'
                         );
                         $.each(data, function(key, value) {
+
                             $('select[name="section_id"]').append(
                                 '<option value="' + key + '">' + value +
                                 '</option>');
