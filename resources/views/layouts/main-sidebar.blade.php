@@ -103,9 +103,14 @@
                             <li><a href="{{ route('students.index') }}">{{ trans('main_trans.list_students') }}</a>
                             <li><a href="{{ route('students.create') }}">{{ trans('main_trans.add_student') }}</a>
                             <li><a
+                                    href="{{ route('students.promotions.create') }}">{{ trans('main_trans.list_Promotions') }}</a>
+
+                            </li>
+                            <li><a
                                     href="{{ route('students.promotions.index') }}">{{ trans('main_trans.add_Promotion') }}</a>
 
                             </li>
+
 
                         </ul>
                     </li>

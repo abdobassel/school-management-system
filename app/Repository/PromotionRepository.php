@@ -63,4 +63,13 @@ class PromotionRepository implements PromotionRepositoryInterface
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
+
+
+
+    // create
+    public function create()
+    {
+        $promotions = Promotion::all();
+        return view('pages.students.promotions.management', compact('promotions'));
+    }
 }

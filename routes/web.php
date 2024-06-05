@@ -90,6 +90,8 @@ Route::group(
         Route::get('/promotions', [PromotionController::class, 'index'])->name('students.promotions.index');
 
         Route::post('/promotions', [PromotionController::class, 'store'])->name('students.promotions.store');
+        Route::get('/promotions-management', [PromotionController::class, 'create'])->name('students.promotions.create');
+
 
         // options select class and grades and sections
 

@@ -22,6 +22,8 @@ class CreatePromotionsTable extends Migration
             $table->foreignId('to_grade')->constrained('grades');
             $table->foreignId('to_Classroom')->constrained('classrooms');
             $table->foreignId('to_section')->constrained('sections');
+            $table->string('academic_year');
+            $table->string('academic_year_new');
             $table->timestamps();
         });
     }
