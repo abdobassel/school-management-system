@@ -9,6 +9,7 @@ use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\PromotionController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -85,6 +86,10 @@ Route::group(
         Route::get('download_attachment/{studentname}/{filename}', [StudentController::class, 'download_attachment'])->name('students.download_attachment');
         // delete attachment
         Route::post('delete_attachment', [StudentController::class, 'deleteAttachment'])->name('students.delete_attachment');
+        // promotion students 
+        Route::get('/promotions', [PromotionController::class, 'index'])->name('students.promotions.index');
+
+        Route::post('/promotions', [PromotionController::class, 'store'])->name('students.promotions.store');
 
         // options select class and grades and sections
 

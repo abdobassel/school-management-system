@@ -23,6 +23,7 @@ return [
     'Teachers' => 'Teachers',
     'List_Teachers' => 'List Teachers',
     'Parents' => 'Parents',
+    'add_Promotion' => 'Add Promptions',
     'Add_Parent' => 'Add Parent',
     'List_Parents' => 'List Parents',
     'Accounts' => 'Accounts',
