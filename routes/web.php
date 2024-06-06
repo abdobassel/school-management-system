@@ -91,6 +91,8 @@ Route::group(
 
         Route::post('/promotions', [PromotionController::class, 'store'])->name('students.promotions.store');
         Route::get('/promotions-management', [PromotionController::class, 'create'])->name('students.promotions.create');
+        Route::delete('/promotions', [PromotionController::class, 'destroy'])->name('students.promotions.destroy');
+
 
 
         // options select class and grades and sections

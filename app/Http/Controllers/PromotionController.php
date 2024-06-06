@@ -79,8 +79,8 @@ class PromotionController extends Controller
      * @param  \App\Promotion  $promotion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Promotion $promotion)
+    public function destroy(Request $request)
     {
-        //
+        return $this->promotion->destroy($request);
     }
 }

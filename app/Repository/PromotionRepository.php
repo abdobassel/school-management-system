@@ -72,4 +72,39 @@ class PromotionRepository implements PromotionRepositoryInterface
         $promotions = Promotion::all();
         return view('pages.students.promotions.management', compact('promotions'));
     }
+
+    // delete 
+    public function destroy($request)
+    {
+        DB::beginTransaction();
+        try {
+            if ($request->page_id == 1) {
+                // احصل على جميع الترقيات
+                $promotions = Promotion::all();
+
+                // قم بتحديث الطلاب إلى القيم القديمة
+                foreach ($promotions as $prom) {
+                    Student::where('id', $prom->student_id)->update([
+                        'grade_id' => $prom->from_grade,
+                        'classroom_id' => $prom->from_Classroom,
+                        'section_id' => $prom->from_section,
+                    ]);
+
+                    Promotion::query()->delete();
+                }
+
+                // حذف جميع الترقيات
+
+
+                DB::commit();
+                toastr()->warning(trans('messages.Delete'));
+                return redirect()->route('students.promotions.create');
+            } else {
+                return false;
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
 }
