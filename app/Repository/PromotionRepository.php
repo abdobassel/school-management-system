@@ -100,7 +100,23 @@ class PromotionRepository implements PromotionRepositoryInterface
                 toastr()->warning(trans('messages.Delete'));
                 return redirect()->route('students.promotions.create');
             } else {
-                return false;
+                // delete one student => id => update in table students and delete from promotions table 
+                //return $request;
+                $promotions = Promotion::findOrFail($request->id);
+                //return $promotions;
+                $student = Student::findOrFail($promotions->student_id);
+
+                $student->update([
+                    'grade_id' => $promotions->from_grade,
+                    'classroom_id' => $promotions->from_Classroom,
+                    'section_id' => $promotions->from_section
+                ]);
+
+                $promotions->delete();
+
+                DB::commit();
+                toastr()->warning(trans('messages.Delete'));
+                return redirect()->route('students.promotions.create');
             }
         } catch (\Exception $e) {
             DB::rollBack();
