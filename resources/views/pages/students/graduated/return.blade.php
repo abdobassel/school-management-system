@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="post" autocomplete="off">
+                <form action="{{ route('graduated.restore') }}" method="post" autocomplete="off">
                     @method('PUT')
                     @csrf
                     <input type="hidden" name="id" value="{{ $student->id }}">

@@ -97,6 +97,9 @@ Route::group(
         Route::get('/graduated', [GradutedController::class, 'index'])->name('graduted.index');
         Route::get('/graduated/create', [GradutedController::class, 'create'])->name('graduted.create');
         Route::post('/graduated/create', [GradutedController::class, 'store'])->name('graduated.store');
+        Route::put('/graduated', [GradutedController::class, 'returnStudent'])->name('graduated.restore');
+
+        Route::delete('/graduated', [GradutedController::class, 'forceDelete'])->name('graduated.forceDelete');
 
 
 

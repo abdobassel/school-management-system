@@ -38,4 +38,19 @@ class GraduatedRepository implements GraduatedRepositoryInterface
         toastr()->success(trans('messages.Delete'));
         return redirect()->back();
     }
+    // retrun student 
+
+    public function returnStudent($request)
+    {
+        Student::onlyTrashed()->where('id', $request->id)->first()->restore();
+        toastr()->success(trans('messages.Update'));
+        return redirect()->back();
+    }
+
+    public function forceDelete($request)
+    {
+        Student::onlyTrashed()->where('id', $request->id)->first()->forceDelete();
+        toastr()->success(trans('messages.Delete'));
+        return redirect()->back();
+    }
 }

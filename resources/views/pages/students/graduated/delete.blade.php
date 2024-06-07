@@ -11,7 +11,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="post">
+                <form action="{{ route('graduated.forceDelete') }}" method="post">
                     @csrf
                     @method('DELETE')
 

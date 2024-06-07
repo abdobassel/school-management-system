@@ -29,4 +29,12 @@ class GradutedController extends Controller
     {
         return $this->graduated->store($request);
     }
+    public function returnStudent(Request $request)
+    {
+        return $this->graduated->returnStudent($request);
+    }
+    public function forceDelete(Request $request)
+    {
+        return $this->graduated->forceDelete($request);
+    }
 }
