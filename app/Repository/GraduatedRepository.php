@@ -26,6 +26,16 @@ class GraduatedRepository implements GraduatedRepositoryInterface
 
     public function store($request)
     {
-        return $request;
+        $students =  Student::where('grade_id', $request->Grade_id)->where('classroom_id', $request->Classroom_id)->where('section_id', $request->section_id)->get();
+        if ($students->count() < 1) {
+            return redirect()->back()->withErrors(['error' => 'not found ']);
+        }
+        $studentIds = $students->pluck('id')->toArray();
+        Student::whereIn('id', $studentIds)->delete();
+
+
+
+        toastr()->success(trans('messages.Delete'));
+        return redirect()->back();
     }
 }

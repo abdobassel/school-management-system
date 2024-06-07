@@ -42,10 +42,10 @@
                                                 <td>{{ $loop->index + 1 }}</td>
                                                 <td>{{ $student->name }}</td>
                                                 <td>{{ $student->email }}</td>
-                                                <td>{{ $student->gender->Name }}</td>
-                                                <td>{{ $student->grade->Name }}</td>
-                                                <td>{{ $student->classroom->Name_Class }}</td>
-                                                <td>{{ $student->section->Name_Section }}</td>
+                                                <td>{{ $student->gender->name }}</td>
+                                                <td>{{ $student->grade->name }}</td>
+                                                <td>{{ $student->classroom->name }}</td>
+                                                <td>{{ $student->section->name }}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-success btn-sm"
                                                         data-toggle="modal"
