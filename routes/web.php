@@ -8,6 +8,7 @@ use App\Http\Controllers\GradeController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\GradutedController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\PromotionController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -92,6 +93,11 @@ Route::group(
         Route::post('/promotions', [PromotionController::class, 'store'])->name('students.promotions.store');
         Route::get('/promotions-management', [PromotionController::class, 'create'])->name('students.promotions.create');
         Route::delete('/promotions', [PromotionController::class, 'destroy'])->name('students.promotions.destroy');
+        // graduated
+        Route::get('/graduated', [GradutedController::class, 'index'])->name('graduted.index');
+        Route::get('/graduated/create', [GradutedController::class, 'create'])->name('graduted.create');
+        Route::post('/graduated/create', [GradutedController::class, 'store'])->name('graduated.store');
+
 
 
 

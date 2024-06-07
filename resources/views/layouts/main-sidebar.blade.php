@@ -110,6 +110,10 @@
                                     href="{{ route('students.promotions.index') }}">{{ trans('main_trans.add_Promotion') }}</a>
 
                             </li>
+                            <li><a href="{{ route('graduted.create') }}">{{ trans('main_trans.add_Graduate') }}</a>
+                            <li><a
+                                    href="{{ route('graduted.index') }}">{{ trans('main_trans.Graduate_students') }}</a>
+
 
 
                         </ul>
