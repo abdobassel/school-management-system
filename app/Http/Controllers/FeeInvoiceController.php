@@ -4,50 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Fee_invoice;
 use Illuminate\Http\Request;
+use App\Repository\FeeInvoiceRepositoryInterface;
 
 class FeeInvoiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $feeInvoice;
+    public function __construct(FeeInvoiceRepositoryInterface $feeInvoice)
+    {
+        $this->feeInvoice = $feeInvoice;
+    }
     public function index()
     {
-        //
+        return $this->feeInvoice->index();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function show($id)
     {
-        //
+        return $this->feeInvoice->show($id);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        return $this->feeInvoice->store($request);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Fee_invoice  $fee_invoice
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Fee_invoice $fee_invoice)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.

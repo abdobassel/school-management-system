@@ -12,6 +12,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\GradutedController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\FeeInvoiceController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -109,6 +110,12 @@ Route::group(
         Route::get('/fees/{fee_id}', [FeeController::class, 'edit'])->name('fees.edit');
         Route::put('/fees/update', [FeeController::class, 'update'])->name('fees.update');
         Route::get('/fees/students/{id}', [FeeController::class, 'showStudentsTableFees'])->name('fees.showStudentsTableFees');
+        // fees invoices
+        Route::get('/fees-invoice', [FeeInvoiceController::class, 'index'])->name('fees_invoices.index');
+
+        Route::get('/fees-invoice/{id}', [FeeInvoiceController::class, 'show'])->name('fees_invoices.show');
+        Route::post('/fees-invoice', [FeeInvoiceController::class, 'store'])->name('fees_invoices.store');
+
 
 
 

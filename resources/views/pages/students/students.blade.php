@@ -63,7 +63,8 @@
                                                             <a class="dropdown-item" href=""><i
                                                                     style="color:green" class="fa fa-edit"></i>&nbsp;
                                                                 تعديل بيانات الطالب</a>
-                                                            <a class="dropdown-item" href=""><i
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('fees_invoices.show', $student->id) }}"><i
                                                                     style="color: #0000cc"
                                                                     class="fa fa-edit"></i>&nbsp;اضافة فاتورة
                                                                 رسوم&nbsp;</a>

@@ -9,11 +9,15 @@ use App\Repository\TeacherRepository;
 use App\Repository\GraduatedRepository;
 use App\Repository\PromotionRepository;
 use Illuminate\Support\ServiceProvider;
+use App\Repository\FeeInvoiceRepository;
 use App\Repository\FeeRepositoryInterface;
+use App\Repository\StudentAccountRepository;
 use App\Repository\StudentRepositoryInterface;
 use App\Repository\TeacherRepositoryInterface;
 use App\Repository\GraduatedRepositoryInterface;
 use App\Repository\PromotionRepositoryInterface;
+use App\Repository\FeeInvoiceRepositoryInterface;
+use App\Repository\StudentAccountRepositoryInterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -47,6 +51,16 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             FeeRepositoryInterface::class,
             FeeRepository::class,
+
+        );
+        $this->app->bind(
+            FeeInvoiceRepositoryInterface::class,
+            FeeInvoiceRepository::class,
+
+        );
+        $this->app->bind(
+            StudentAccountRepositoryInterface::class,
+            StudentAccountRepository::class,
 
         );
     }
