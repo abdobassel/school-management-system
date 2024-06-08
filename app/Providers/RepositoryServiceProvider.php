@@ -2,11 +2,14 @@
 
 namespace App\Providers;
 
+use App\Repository\FeeRepository;
+use App\Repository\FeesRepository;
 use App\Repository\StudentRepository;
 use App\Repository\TeacherRepository;
 use App\Repository\GraduatedRepository;
 use App\Repository\PromotionRepository;
 use Illuminate\Support\ServiceProvider;
+use App\Repository\FeeRepositoryInterface;
 use App\Repository\StudentRepositoryInterface;
 use App\Repository\TeacherRepositoryInterface;
 use App\Repository\GraduatedRepositoryInterface;
@@ -39,6 +42,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             GraduatedRepositoryInterface::class,
             GraduatedRepository::class,
+
+        );
+        $this->app->bind(
+            FeeRepositoryInterface::class,
+            FeeRepository::class,
 
         );
     }

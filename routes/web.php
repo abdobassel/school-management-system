@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FeeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\SectionController;
@@ -100,6 +101,17 @@ Route::group(
         Route::put('/graduated', [GradutedController::class, 'returnStudent'])->name('graduated.restore');
 
         Route::delete('/graduated', [GradutedController::class, 'forceDelete'])->name('graduated.forceDelete');
+
+        // fees 
+        Route::get('/fees', [FeeController::class, 'index'])->name('fees.index');
+        Route::get('/fees/create', [FeeController::class, 'create'])->name('fees.create');
+        Route::post('/fees/create', [FeeController::class, 'store'])->name('fees.store');
+        Route::get('/fees/{fee_id}', [FeeController::class, 'edit'])->name('fees.edit');
+        Route::put('/fees/update', [FeeController::class, 'update'])->name('fees.update');
+
+
+
+
 
 
 
