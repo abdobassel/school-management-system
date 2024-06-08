@@ -108,6 +108,7 @@ Route::group(
         Route::post('/fees/create', [FeeController::class, 'store'])->name('fees.store');
         Route::get('/fees/{fee_id}', [FeeController::class, 'edit'])->name('fees.edit');
         Route::put('/fees/update', [FeeController::class, 'update'])->name('fees.update');
+        Route::get('/fees/students/{id}', [FeeController::class, 'showStudentsTableFees'])->name('fees.showStudentsTableFees');
 
 
 

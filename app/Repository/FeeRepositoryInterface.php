@@ -16,4 +16,5 @@ interface FeeRepositoryInterface
     public function update($request);
 
     public function destroy($request);
+    public function showStudentsTableFees($id);
 }

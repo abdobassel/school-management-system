@@ -34,6 +34,10 @@ class FeeController extends Controller
     public function show(Fee $fee)
     {
     }
+    public function showStudentsTableFees($id)
+    {
+        return $this->fee->showStudentsTableFees($id);
+    }
 
 
     public function edit($fee_id)

@@ -5,6 +5,7 @@ namespace App\Repository;
 
 use App\Fee;
 use App\Grade;
+use App\Student;
 use App\Repository\FeeRepositoryInterface;
 
 class FeeRepository implements FeeRepositoryInterface
@@ -72,5 +73,15 @@ class FeeRepository implements FeeRepositoryInterface
 
     public function destroy($request)
     {
+    }
+    public function showStudentsTableFees($id)
+    {
+        $data = [];
+        $fee = Fee::findOrFail($id);
+        $students = Student::where('classroom_id', $fee->classroom_id)->where('grade_id', $fee->grade_id)->get();
+        $data['students'] = $students;
+        $data['fee'] = $fee->amount;
+        $data['paid'] = $fee->amount - 250;
+        return $data;
     }
 }
