@@ -25,7 +25,7 @@ class ClassroomSeeder extends Seeder
 
         foreach ($classrooms as $classroom) {
             Classroom::create([
-                'name' => $classroom,
+                'name' => $classroom['name'],
                 'grade_id' => Grade::all()->unique()->random()->id
             ]);
         }

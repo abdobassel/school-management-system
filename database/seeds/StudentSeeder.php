@@ -20,20 +20,61 @@ class StudentSeeder extends Seeder
      */
     public function run()
     {
+        // حذف جميع السجلات الموجودة في جدول الطلاب
         DB::table('students')->delete();
-        $students = new Student();
-        $students->name = ['ar' => 'احمد ابراهيم', 'en' => 'Ahmed Ibrahim'];
-        $students->email = 'Ahmed_Ibrahim@yahoo.com';
-        $students->password = Hash::make('12345678');
-        $students->gender_id = 1;
-        $students->nationalitiy_id = Nationality::all()->unique()->random()->id;
-        $students->blood_id = Blood::all()->unique()->random()->id;
-        $students->Date_Birth = date('1995-01-01');
-        $students->Grade_id = Grade::all()->unique()->random()->id;
-        $students->Classroom_id = Classroom::all()->unique()->random()->id;
-        $students->section_id = Section::all()->unique()->random()->id;
-        $students->parent_id = MyParent::all()->unique()->random()->id;
-        $students->academic_year = '2021';
-        $students->save();
+
+        // قائمة الطلاب المراد إدخالها
+        $students = [
+            [
+                'name' => ['ar' => 'احمد ابراهيم', 'en' => 'Ahmed Ibrahim'],
+                'email' => 'Ahmed_Ibrahim@yahoo.com',
+                'password' => Hash::make('12345678'),
+                'gender_id' => 1,
+                'date_birth' => '2009-01-01',
+                'academic_year' => '2021',
+            ],
+            [
+                'name' => ['ar' => 'محمد علي', 'en' => 'Mohamed Ali'],
+                'email' => 'mohamed_ali@yahoo.com',
+                'password' => Hash::make('12345678'),
+                'gender_id' => 1,
+                'date_birth' => '2004-01-01',
+                'academic_year' => '2021',
+            ],
+            [
+                'name' => ['ar' => 'سارة أحمد', 'en' => 'Sara Ahmed'],
+                'email' => 'sara_ahmed@yahoo.com',
+                'password' => Hash::make('12345678'),
+                'gender_id' => 2,
+                'date_birth' => '2009-01-01',
+                'academic_year' => '2021',
+            ],
+            [
+                'name' => ['ar' => 'نور الدين', 'en' => 'Nour Eldin'],
+                'email' => 'nour_eldin@yahoo.com',
+                'password' => Hash::make('12345678'),
+                'gender_id' => 1,
+                'date_birth' => '2006-01-01',
+                'academic_year' => '2021',
+            ],
+        ];
+
+        // إدخال بيانات الطلاب
+        foreach ($students as $studentData) {
+            $student = new Student();
+            $student->name = $studentData['name'];
+            $student->email = $studentData['email'];
+            $student->password = $studentData['password'];
+            $student->gender_id = $studentData['gender_id'];
+            $student->nationalitiy_id = Nationality::all()->unique()->random()->id;
+            $student->blood_id = Blood::all()->unique()->random()->id;
+            $student->date_birth = $studentData['date_birth'];
+            $student->grade_id = Grade::all()->unique()->random()->id;
+            $student->classroom_id = Classroom::all()->unique()->random()->id;
+            $student->section_id = Section::all()->unique()->random()->id;
+            $student->parent_id = MyParent::all()->unique()->random()->id;
+            $student->academic_year = $studentData['academic_year'];
+            $student->save();
+        }
     }
 }
