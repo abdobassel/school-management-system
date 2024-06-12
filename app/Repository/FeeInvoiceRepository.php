@@ -47,8 +47,11 @@ class FeeInvoiceRepository implements FeeInvoiceRepositoryInterface
 
                 $studentAccount = new StudentAccount();
                 $studentAccount->student_id = $list['student_id'];
-                $studentAccount->grade_id = $request->grade_id;
-                $studentAccount->classroom_id = $request->classroom_id;
+                //   $studentAccount->grade_id = $request->grade_id;
+                $studentAccount->type = 'invoice';
+                $studentAccount->fee_invoice_id = $fees->id;
+                $studentAccount->date = date('Y-m-d');
+                // $studentAccount->classroom_id = $request->classroom_id;
                 $studentAccount->debit = $list['amount'];
                 $studentAccount->credit = 0.00;
                 $studentAccount->description = $list['description'];
@@ -58,6 +61,38 @@ class FeeInvoiceRepository implements FeeInvoiceRepositoryInterface
             DB::commit();
 
             toastr()->success(trans('messages.success'));
+            return redirect()->route('fees_invoices.index');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+    public function edit($id)
+    {
+        $fee_invoices = Fee_invoice::findOrFail($id);
+        $fees = Fee::where('classroom_id', $fee_invoices->classroom_id)->get();
+        return view('pages.fees_invoices.edit', compact('fees', 'fee_invoices'));
+    }
+    public function update($request)
+    {
+        DB::beginTransaction();
+        try {
+            // تعديل البيانات في جدول فواتير الرسوم الدراسية
+            $fees = Fee_invoice::findorfail($request->id);
+            $fees->fee_id = $request->fee_id;
+            $fees->amount = $request->amount;
+            $fees->description = $request->description;
+            $fees->save();
+
+            // تعديل البيانات في جدول حسابات الطلاب
+            $StudentAccount = StudentAccount::where('fee_invoice_id', $request->id)->first();
+            $StudentAccount->Debit = $request->amount;
+            $StudentAccount->description = $request->description;
+            $StudentAccount->save();
+            DB::commit();
+
+            toastr()->success(trans('messages.Update'));
             return redirect()->route('fees_invoices.index');
         } catch (\Exception $e) {
             DB::rollback();

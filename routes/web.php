@@ -114,7 +114,11 @@ Route::group(
         Route::get('/fees-invoice', [FeeInvoiceController::class, 'index'])->name('fees_invoices.index');
 
         Route::get('/fees-invoice/{id}', [FeeInvoiceController::class, 'show'])->name('fees_invoices.show');
+
+        Route::get('/fees-invoice/{id}', [FeeInvoiceController::class, 'edit'])->name('fees_invoices.edit');
         Route::post('/fees-invoice', [FeeInvoiceController::class, 'store'])->name('fees_invoices.store');
+        Route::put('/fees-invoice', [FeeInvoiceController::class, 'update'])->name('fees_invoices.update');
+
 
 
 

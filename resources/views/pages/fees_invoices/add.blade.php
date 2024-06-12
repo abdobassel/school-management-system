@@ -48,7 +48,8 @@
                                                     <select class="fancyselect" name="fee_id" required>
                                                         <option value="">-- اختار من القائمة --</option>
                                                         @foreach ($fees as $fee)
-                                                            <option value="{{ $fee->id }}">{{ $fee->title }}</option>
+                                                            <option value="{{ $fee->id }}">{{ $fee->fee_type }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </div>

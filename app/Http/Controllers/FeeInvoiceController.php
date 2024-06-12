@@ -37,21 +37,16 @@ class FeeInvoiceController extends Controller
      * @param  \App\Fee_invoice  $fee_invoice
      * @return \Illuminate\Http\Response
      */
-    public function edit(Fee_invoice $fee_invoice)
+    public function edit($id)
     {
-        //
+        return $this->feeInvoice->edit($id);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Fee_invoice  $fee_invoice
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Fee_invoice $fee_invoice)
+
+
+    public function update(Request $request)
     {
-        //
+        return $this->feeInvoice->update($request);
     }
 
     /**
