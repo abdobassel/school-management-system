@@ -13,6 +13,7 @@ use App\Http\Controllers\GradutedController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\FeeInvoiceController;
+use App\Http\Controllers\ReceiptStudentController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -113,11 +114,22 @@ Route::group(
         // fees invoices
         Route::get('/fees-invoice', [FeeInvoiceController::class, 'index'])->name('fees_invoices.index');
 
-        Route::get('/fees-invoice/{id}', [FeeInvoiceController::class, 'show'])->name('fees_invoices.show');
+
 
         Route::get('/fees-invoice/{id}', [FeeInvoiceController::class, 'edit'])->name('fees_invoices.edit');
         Route::post('/fees-invoice', [FeeInvoiceController::class, 'store'])->name('fees_invoices.store');
+
+        Route::post('/fees-invoice', [FeeInvoiceController::class, 'destroy'])->name('fees_invoices.delete');
         Route::put('/fees-invoice', [FeeInvoiceController::class, 'update'])->name('fees_invoices.update');
+        Route::get('/fees-invoice/{id}', [FeeInvoiceController::class, 'show'])->name('fees_invoices.show');
+        // receipts 
+        Route::get('/receipt_student', [ReceiptStudentController::class, 'index'])->name('receipts_student.index');
+
+        Route::get('/receipt_student/{id}', [ReceiptStudentController::class, 'show'])->name('receipts_student.show');
+        Route::post('/receipt_student', [ReceiptStudentController::class, 'store'])->name('receipts_student.store');
+        Route::get('/receipt_student/{id}', [ReceiptStudentController::class, 'edit'])->name('receipts_student.edit');
+        Route::put('/receipt_student', [ReceiptStudentController::class, 'update'])->name('receipts_student.update');
+        Route::delete('/receipt_student', [ReceiptStudentController::class, 'destroy'])->name('receipts_student.destroy');
 
 
 

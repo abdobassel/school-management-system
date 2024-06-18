@@ -99,4 +99,15 @@ class FeeInvoiceRepository implements FeeInvoiceRepositoryInterface
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
+
+    public function destroy($request)
+    {
+        try {
+            Fee_invoice::findOrFail($request->id)->delete();
+            toastr()->error(trans('messages.Delete'));
+            return redirect()->back();
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
 }

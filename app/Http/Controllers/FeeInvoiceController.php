@@ -55,8 +55,8 @@ class FeeInvoiceController extends Controller
      * @param  \App\Fee_invoice  $fee_invoice
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Fee_invoice $fee_invoice)
+    public function destroy(Request $request)
     {
-        //
+        return $this->feeInvoice->destroy($request);
     }
 }

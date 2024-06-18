@@ -13,4 +13,5 @@ interface FeeInvoiceRepositoryInterface
     public function edit($id);
     public function update($request);
     public function index();
+    public function destroy($request);
 }
