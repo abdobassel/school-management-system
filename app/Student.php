@@ -52,7 +52,10 @@ class Student extends Model
     {
         return $this->belongsTo(MyParent::class, 'parent_id');
     }
-
+    public function student_account()
+    {
+        return $this->hasMany(StudentAccount::class, 'student_id');
+    }
     // images
     public function images()
     {

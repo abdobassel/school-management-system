@@ -13,6 +13,7 @@ use App\Http\Controllers\GradutedController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\FeeInvoiceController;
+use App\Http\Controllers\ProcessingFeesController;
 use App\Http\Controllers\ReceiptStudentController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -117,7 +118,7 @@ Route::group(
 
 
         Route::get('/fees-invoice/{id}', [FeeInvoiceController::class, 'edit'])->name('fees_invoices.edit');
-        Route::post('/fees-invoice', [FeeInvoiceController::class, 'store'])->name('fees_invoices.store');
+        Route::post('/fees-invoices', [FeeInvoiceController::class, 'store'])->name('fees_invoices.store');
 
         Route::post('/fees-invoice', [FeeInvoiceController::class, 'destroy'])->name('fees_invoices.delete');
         Route::put('/fees-invoice', [FeeInvoiceController::class, 'update'])->name('fees_invoices.update');
@@ -125,12 +126,16 @@ Route::group(
         // receipts 
         Route::get('/receipt_student', [ReceiptStudentController::class, 'index'])->name('receipts_student.index');
 
-        Route::get('/receipt_student/{id}', [ReceiptStudentController::class, 'show'])->name('receipts_student.show');
+        Route::get('/receipt_students/{id}', [ReceiptStudentController::class, 'show'])->name('receipts_student.show');
         Route::post('/receipt_student', [ReceiptStudentController::class, 'store'])->name('receipts_student.store');
         Route::get('/receipt_student/{id}', [ReceiptStudentController::class, 'edit'])->name('receipts_student.edit');
         Route::put('/receipt_student', [ReceiptStudentController::class, 'update'])->name('receipts_student.update');
         Route::delete('/receipt_student', [ReceiptStudentController::class, 'destroy'])->name('receipts_student.destroy');
+        // processing 
+        Route::get('/processing_fees/{id}', [ProcessingFeesController::class, 'show'])->name('processing_fees.show');
+        Route::get('/processing_fees', [ProcessingFeesController::class, 'index'])->name('processing_fees.index');
 
+        Route::post('/processing_fees', [ProcessingFeesController::class, 'store'])->name('processing_fees.store');
 
 
 
