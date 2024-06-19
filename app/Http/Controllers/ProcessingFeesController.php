@@ -17,25 +17,12 @@ class ProcessingFeesController extends Controller
      */
     public function index()
     {
-        return 'ok';
+        $processingFees = ProcessingFees::all();
+
+        return view('pages.students.processing_fees.index', compact('processingFees'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         DB::beginTransaction();

@@ -34,19 +34,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($ProcessingFees as $ProcessingFee)
+                                        @foreach ($processingFees as $processingFee)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $ProcessingFee->student->name }}</td>
-                                                <td>{{ number_format($ProcessingFee->amount, 2) }}</td>
-                                                <td>{{ $ProcessingFee->description }}</td>
+                                                <td>{{ $processingFee->student->name }}</td>
+                                                <td>{{ number_format($processingFee->amount, 2) }}</td>
+                                                <td>{{ $processingFee->desc }}</td>
                                                 <td>
-                                                    <a href="{{ route('ProcessingFee.edit', $ProcessingFee->id) }}"
-                                                        class="btn btn-info btn-sm" role="button"
+                                                    <a href="#" class="btn btn-info btn-sm" role="button"
                                                         aria-pressed="true"><i class="fa fa-edit"></i></a>
                                                     <button type="button" class="btn btn-danger btn-sm"
                                                         data-toggle="modal"
-                                                        data-target="#Delete_receipt{{ $ProcessingFee->id }}"><i
+                                                        data-target="#Delete_receipt{{ $processingFee->id }}"><i
                                                             class="fa fa-trash"></i></button>
                                                 </td>
                                             </tr>

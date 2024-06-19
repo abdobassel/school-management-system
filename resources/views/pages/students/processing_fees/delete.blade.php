@@ -1,5 +1,5 @@
 <!-- Deleted inFormation Student -->
-<div class="modal fade" id="Delete_receipt{{ $ProcessingFee->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="Delete_receipt{{ $processingFee->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -14,7 +14,7 @@
                 <form action="" method="post">
                     @csrf
                     @method('DELETE')
-                    <input type="hidden" name="id" value="{{ $ProcessingFee->id }}">
+                    <input type="hidden" name="id" value="{{ $processingFee->id }}">
                     <h5 style="font-family: 'Cairo', sans-serif;">هل انت متاكد مع عملية الحذف ؟</h5>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary"
