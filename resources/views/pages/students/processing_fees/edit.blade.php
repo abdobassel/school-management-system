@@ -8,7 +8,7 @@
 @section('page-header')
 <!-- breadcrumb -->
 @section('PageTitle')
-    تعديل معالجة رسوم : <label style="color: red">{{ $ProcessingFee->student->name }}</label>
+    تعديل معالجة رسوم : <label style="color: red">{{ $processingFee->student->name }}</label>
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -29,7 +29,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('ProcessingFee.update', 'test') }}" method="post" autocomplete="off">
+                <form action="{{ route('processing_fees.update') }}" method="post" autocomplete="off">
                     @method('PUT')
                     @csrf
                     @csrf
@@ -37,11 +37,11 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>المبلغ : <span class="text-danger">*</span></label>
-                                <input class="form-control" name="Debit" value="{{ $ProcessingFee->amount }}"
+                                <input class="form-control" name="Debit" value="{{ $processingFee->amount }}"
                                     type="number">
-                                <input type="hidden" name="student_id" value="{{ $ProcessingFee->student->id }}"
+                                <input type="hidden" name="student_id" value="{{ $processingFee->student->id }}"
                                     class="form-control">
-                                <input type="hidden" name="id" value="{{ $ProcessingFee->id }}"
+                                <input type="hidden" name="id" value="{{ $processingFee->id }}"
                                     class="form-control">
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>البيان : <span class="text-danger">*</span></label>
-                                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3">{{ $ProcessingFee->description }}</textarea>
+                                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3">{{ $processingFee->desc }}</textarea>
                             </div>
                         </div>
 

@@ -41,7 +41,8 @@
                                                 <td>{{ number_format($processingFee->amount, 2) }}</td>
                                                 <td>{{ $processingFee->desc }}</td>
                                                 <td>
-                                                    <a href="#" class="btn btn-info btn-sm" role="button"
+                                                    <a href="{{ route('processing_fees.edit', $processingFee->id) }}"
+                                                        class="btn btn-info btn-sm" role="button"
                                                         aria-pressed="true"><i class="fa fa-edit"></i></a>
                                                     <button type="button" class="btn btn-danger btn-sm"
                                                         data-toggle="modal"

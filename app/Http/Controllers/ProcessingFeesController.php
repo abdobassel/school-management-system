@@ -55,27 +55,17 @@ class ProcessingFeesController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\ProcessingFees  $processingFees
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         $student = Student::findOrFail($id);
         return view('pages.students.processing_fees.add', compact('student'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ProcessingFees  $processingFees
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ProcessingFees $processingFees)
+    public function edit($id)
     {
-        //
+        $processingFee = ProcessingFees::findOrFail($id);
+        return view('pages.students.processing_fees.edit', compact('processingFee'));
     }
 
     /**
@@ -85,9 +75,9 @@ class ProcessingFeesController extends Controller
      * @param  \App\ProcessingFees  $processingFees
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProcessingFees $processingFees)
+    public function update(Request $request)
     {
-        //
+        return $request;
     }
 
     /**

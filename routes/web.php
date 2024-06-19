@@ -136,6 +136,9 @@ Route::group(
         Route::get('/processing_fees', [ProcessingFeesController::class, 'index'])->name('processing_fees.index');
 
         Route::post('/processing_fees', [ProcessingFeesController::class, 'store'])->name('processing_fees.store');
+        Route::get('/processing_fees_edit/{id}', [ProcessingFeesController::class, 'edit'])->name('processing_fees.edit');
+        Route::put('/processing_fees', [ProcessingFeesController::class, 'update'])->name('processing_fees.update');
+
 
 
 
