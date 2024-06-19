@@ -77,7 +77,35 @@ class ProcessingFeesController extends Controller
      */
     public function update(Request $request)
     {
-        return $request;
+        // return $request;
+        DB::beginTransaction();
+        try {
+            $processingFees =  ProcessingFees::findOrFail($request->id);
+
+            $processingFees->date = date('Y-m-d');
+            $processingFees->student_id = $request->student_id;
+            $processingFees->amount = $request->Debit;
+            $processingFees->desc = $request->description;
+            $processingFees->save();
+            //////////////////////////////////////////////
+            $student_acc =  StudentAccount::where('processing_id', $request->id)->first();
+            $student_acc->date = date('Y-m-d');
+            $student_acc->student_id = $request->student_id;
+            $student_acc->processing_id = $processingFees->id;
+            $student_acc->type = 'processing_fee';
+            $student_acc->credit = $request->Debit;
+            $student_acc->debit = 0.00; // داين
+            $student_acc->description = $request->description;
+            $student_acc->save();
+
+            //////////////////////////////////////////////
+            DB::commit();
+            toastr()->success('Updated Processing fee');
+            return redirect()->route('processing_fees.index');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 
     public function destroy(Request $request)
