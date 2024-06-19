@@ -23,6 +23,7 @@ class CreateStudentAccountsTable extends Migration
             $table->foreignId('fee_invoice_id')->nullable()->constrained('fee_invoices')->cascadeOnDelete();
             $table->foreignId('receipt_id')->nullable()->constrained('receipt_students')->cascadeOnDelete();
             $table->foreignId('processing_id')->nullable()->constrained('processing_fees')->cascadeOnDelete();
+            $table->foreignId('payment_id')->nullable()->constrained('payment_students')->cascadeOnDelete();
 
             $table->decimal('debit', 8, 2)->nullable();
             $table->decimal('credit', 8, 2)->nullable();

@@ -16,7 +16,9 @@ class CreateFundAccountsTable extends Migration
         Schema::create('fund_accounts', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->foreignId('receipt_id')->constrained('receipt_students')->cascadeOnDelete();
+            $table->foreignId('receipt_id')->nullable()->constrained('receipt_students')->cascadeOnDelete();
+
+            $table->foreignId('payment_id')->nullable()->constrained('payment_students')->cascadeOnDelete();
             $table->decimal('debit', 8, 2)->nullable();
             $table->decimal('credit', 8, 2)->nullable();
             $table->string('description');
