@@ -80,14 +80,10 @@ class ProcessingFeesController extends Controller
         return $request;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\ProcessingFees  $processingFees
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ProcessingFees $processingFees)
+    public function destroy(Request $request)
     {
-        //
+        ProcessingFees::findOrFail($request->id)->delete();
+        toastr()->success('deleted');
+        return redirect()->route('processing_fees.index');
     }
 }
