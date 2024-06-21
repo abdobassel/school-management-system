@@ -13,6 +13,7 @@ use App\Http\Controllers\GradutedController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\FeeInvoiceController;
+use App\Http\Controllers\PaymentStudentController;
 use App\Http\Controllers\ProcessingFeesController;
 use App\Http\Controllers\ReceiptStudentController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -117,7 +118,7 @@ Route::group(
 
 
 
-        Route::get('/fees-invoice/{id}', [FeeInvoiceController::class, 'edit'])->name('fees_invoices.edit');
+        Route::get('/fees-invoices/{id}', [FeeInvoiceController::class, 'edit'])->name('fees_invoices.edit');
         Route::post('/fees-invoices', [FeeInvoiceController::class, 'store'])->name('fees_invoices.store');
 
         Route::post('/fees-invoice', [FeeInvoiceController::class, 'destroy'])->name('fees_invoices.delete');
@@ -139,6 +140,15 @@ Route::group(
         Route::get('/processing_fees_edit/{id}', [ProcessingFeesController::class, 'edit'])->name('processing_fees.edit');
         Route::put('/processing_fees', [ProcessingFeesController::class, 'update'])->name('processing_fees.update');
         Route::delete('/processing_fees', [ProcessingFeesController::class, 'destroy'])->name('processing_fees.destroy');
+        //payment...
+        Route::get('/payment_student/{id}', [PaymentStudentController::class, 'show'])->name('payment_student.show');
+        Route::post('/payment_student', [PaymentStudentController::class, 'store'])->name('payment_student.store');
+        Route::get('/payment_students', [PaymentStudentController::class, 'index'])->name('payment_student.index');
+        Route::get('/payment_students/{id}', [PaymentStudentController::class, 'edit'])->name('payment_student.edit');
+        Route::delete('/payment_students', [PaymentStudentController::class, 'destroy'])->name('payment_student.delete');
+
+        Route::put('/payment_students', [PaymentStudentController::class, 'update'])->name('payment_student.update');
+
 
 
 
