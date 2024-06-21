@@ -12,6 +12,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\GradutedController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\FeeInvoiceController;
 use App\Http\Controllers\PaymentStudentController;
 use App\Http\Controllers\ProcessingFeesController;
@@ -148,6 +149,9 @@ Route::group(
         Route::delete('/payment_students', [PaymentStudentController::class, 'destroy'])->name('payment_student.delete');
 
         Route::put('/payment_students', [PaymentStudentController::class, 'update'])->name('payment_student.update');
+        //attendance
+        Route::get('/attendances', [AttendanceController::class, 'index'])->name('attendance.index');
+        Route::post('/attendances', [AttendanceController::class, 'store'])->name('attendance.store');
 
 
 
