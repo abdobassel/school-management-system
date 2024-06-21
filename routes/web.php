@@ -144,7 +144,7 @@ Route::group(
         Route::get('/payment_student/{id}', [PaymentStudentController::class, 'show'])->name('payment_student.show');
         Route::post('/payment_student', [PaymentStudentController::class, 'store'])->name('payment_student.store');
         Route::get('/payment_students', [PaymentStudentController::class, 'index'])->name('payment_student.index');
-        Route::get('/payment_students/{id}', [PaymentStudentController::class, 'edit'])->name('payment_student.edit');
+        Route::get('/payment_student_edit/{id}', [PaymentStudentController::class, 'edit'])->name('payment_student.edit');
         Route::delete('/payment_students', [PaymentStudentController::class, 'destroy'])->name('payment_student.delete');
 
         Route::put('/payment_students', [PaymentStudentController::class, 'update'])->name('payment_student.update');

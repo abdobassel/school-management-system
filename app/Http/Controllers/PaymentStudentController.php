@@ -93,7 +93,7 @@ class PaymentStudentController extends Controller
             $paymentStudent->desc = $request->description;
             $paymentStudent->save();
             //////////////////////////////////////////////
-            $student_acc =  StudentAccount::where('payment_id', $request->id);
+            $student_acc =  StudentAccount::where('payment_id', $request->id)->first();
             $student_acc->date = date('Y-m-d');
             $student_acc->student_id = $request->student_id;
             $student_acc->payment_id = $paymentStudent->id;
@@ -104,7 +104,7 @@ class PaymentStudentController extends Controller
             $student_acc->save();
 
             //////////////////////////////////////////////
-            $fundAccount =  FundAccount::where('payment_id', $request->id);
+            $fundAccount =  FundAccount::where('payment_id', $request->id)->first();
             $fundAccount->date = date('Y-m-d');
             $fundAccount->payment_id = $paymentStudent->id;
             $fundAccount->debit = 00.0;
