@@ -13,16 +13,16 @@ class AttendanceController extends Controller
     {
         $this->attendance = $attendanceRepositoryInterface;
     }
-    public function index()
+    public function index($id)
     {
-        return $this->attendance->index();
+        return $this->attendance->index($id);
+    }
+    public function sectionsAttendance()
+    {
+        return $this->attendance->sectionsAttendance();
     }
 
 
-    public function create()
-    {
-        //
-    }
 
     public function store(Request $request)
     {

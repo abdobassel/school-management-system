@@ -64,19 +64,22 @@
                     <td>{{ $student->classroom->name }}</td>
                     <td>{{ $student->section->name }}</td>
                     <td>
+                        @php
+                            $attendance = $student->attendance()->where('attendance_date', date('Y-m-d'))->first();
+                        @endphp
 
-                        @if (isset($student->attendance()->where('attendance_date', date('Y-m-d'))->first()->student_id))
+                        @if ($attendance)
                             <label class="block text-gray-500 font-semibold sm:border-r sm:pr-4">
                                 <input name="attendences[{{ $student->id }}]" disabled
-                                    {{ $student->attendance()->first()->attendence_status == 1 ? 'checked' : '' }}
-                                    class="leading-tight" type="radio" value="presence">
+                                    {{ $attendance->attendance_status == 1 ? 'checked' : '' }} class="leading-tight"
+                                    type="radio" value="presence">
                                 <span class="text-success">حضور</span>
                             </label>
 
                             <label class="ml-4 block text-gray-500 font-semibold">
                                 <input name="attendences[{{ $student->id }}]" disabled
-                                    {{ $student->attendance()->first()->attendence_status == 0 ? 'checked' : '' }}
-                                    class="leading-tight" type="radio" value="absent">
+                                    {{ $attendance->attendance_status == 0 ? 'checked' : '' }} class="leading-tight"
+                                    type="radio" value="absent">
                                 <span class="text-danger">غياب</span>
                             </label>
                         @else
@@ -97,7 +100,6 @@
                         <input type="hidden" name="grade_id" value="{{ $student->grade_id }}">
                         <input type="hidden" name="classroom_id" value="{{ $student->classroom_id }}">
                         <input type="hidden" name="section_id" value="{{ $student->section_id }}">
-
                     </td>
                 </tr>
             @endforeach

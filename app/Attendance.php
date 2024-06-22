@@ -11,7 +11,7 @@ class Attendance extends Model
         'student_id',
         'grade_id',
         'classroom_id',
-        'section_id',
+        'sections_id',
         'teacher_id',
         'attendance_date',
         'attendance_status',

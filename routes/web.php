@@ -150,8 +150,9 @@ Route::group(
 
         Route::put('/payment_students', [PaymentStudentController::class, 'update'])->name('payment_student.update');
         //attendance
-        Route::get('/attendances', [AttendanceController::class, 'index'])->name('attendance.index');
+        Route::get('/attendances/{id}', [AttendanceController::class, 'index'])->name('attendance.index');
         Route::post('/attendances', [AttendanceController::class, 'store'])->name('attendance.store');
+        Route::get('/attendances', [AttendanceController::class, 'sectionsAttendance'])->name('attendance.sectionsAttendance');
 
 
 
