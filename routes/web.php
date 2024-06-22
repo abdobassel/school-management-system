@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\GradutedController;
 use App\Http\Controllers\ClassroomController;
@@ -153,7 +154,8 @@ Route::group(
         Route::get('/attendances/{id}', [AttendanceController::class, 'index'])->name('attendance.index');
         Route::post('/attendances', [AttendanceController::class, 'store'])->name('attendance.store');
         Route::get('/attendances', [AttendanceController::class, 'sectionsAttendance'])->name('attendance.sectionsAttendance');
-
+        //subjects
+        Route::get('/subjects', [SubjectController::class, 'index'])->name('subjects.index');
 
 
 
