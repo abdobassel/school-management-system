@@ -30,17 +30,17 @@
                 <div class="col-xs-12">
                     <div class="col-md-12">
                         <br>
-                        <form action="" method="post" autocomplete="off">
+                        <form action="{{ route('subjects.store') }}" method="post" autocomplete="off">
                             @csrf
 
                             <div class="form-row">
                                 <div class="col">
                                     <label for="title">اسم المادة باللغة العربية</label>
-                                    <input type="text" name="Name_ar" class="form-control">
+                                    <input type="text" name="name_ar" class="form-control">
                                 </div>
                                 <div class="col">
                                     <label for="title">اسم المادة باللغة الانجليزية</label>
-                                    <input type="text" name="Name_en" class="form-control">
+                                    <input type="text" name="name_en" class="form-control">
                                 </div>
                             </div>
                             <br>

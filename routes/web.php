@@ -156,6 +156,14 @@ Route::group(
         Route::get('/attendances', [AttendanceController::class, 'sectionsAttendance'])->name('attendance.sectionsAttendance');
         //subjects
         Route::get('/subjects', [SubjectController::class, 'index'])->name('subjects.index');
+        Route::get('/subjects/create', [SubjectController::class, 'create'])->name('subjects.create');
+
+        Route::post('/subjects/create', [SubjectController::class, 'store'])->name('subjects.store');
+        Route::get('/subjects/edit/{id}', [SubjectController::class, 'edit'])->name('subjects.edit');
+
+        Route::patch('/subjects', [SubjectController::class, 'update'])->name('subjects.update');
+        Route::delete('/subjects', [SubjectController::class, 'destroy'])->name('subjects.destroy');
+
 
 
 

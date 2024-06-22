@@ -43,9 +43,10 @@
                                                 <td>{{ $subject->name }}</td>
                                                 <td>{{ $subject->grade->name }}</td>
                                                 <td>{{ $subject->classroom->name }}</td>
-                                                <td>{{ $subject->teacher->Name }}</td>
+                                                <td>{{ $subject->teacher->name }}</td>
                                                 <td>
-                                                    <a href=" #" class="btn btn-info btn-sm" role="button"
+                                                    <a href="{{ route('subjects.edit', $subject->id) }}"
+                                                        class="btn btn-info btn-sm" role="button"
                                                         aria-pressed="true"><i class="fa fa-edit"></i></a>
                                                     <button type="button" class="btn btn-danger btn-sm"
                                                         data-toggle="modal"
@@ -58,9 +59,9 @@
                                                 tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                 aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
-                                                    <form action="" method="post">
-                                                        {{ method_field('delete') }}
-                                                        {{ csrf_field() }}
+                                                    <form action="{{ route('subjects.destroy') }}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 style="font-family: 'Cairo', sans-serif;"

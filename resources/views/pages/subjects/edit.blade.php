@@ -2,13 +2,13 @@
 @section('css')
     @toastr_css
 @section('title')
-    اضافة مادة دراسية
+    تعديل مادة دراسية
 @stop
 @endsection
 @section('page-header')
 <!-- breadcrumb -->
 @section('PageTitle')
-    اضافة مادة دراسية
+    تعديل مادة دراسية
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -30,7 +30,7 @@
                 <div class="col-xs-12">
                     <div class="col-md-12">
                         <br>
-                        <form action="{{ route('subjects.update', 'test') }}" method="post" autocomplete="off">
+                        <form action="{{ route('subjects.update') }}" method="post" autocomplete="off">
                             {{ method_field('patch') }}
                             @csrf
                             <div class="form-row">
@@ -56,7 +56,7 @@
                                         @foreach ($grades as $grade)
                                             <option value="{{ $grade->id }}"
                                                 {{ $grade->id == $subject->grade_id ? 'selected' : '' }}>
-                                                {{ $grade->Name }}</option>
+                                                {{ $grade->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -65,7 +65,7 @@
                                     <label for="inputState">الصف الدراسي</label>
                                     <select name="Class_id" class="custom-select">
                                         <option value="{{ $subject->classroom->id }}">
-                                            {{ $subject->classroom->Name_Class }}
+                                            {{ $subject->classroom->name }}
                                         </option>
                                     </select>
                                 </div>
@@ -77,7 +77,7 @@
                                         @foreach ($teachers as $teacher)
                                             <option value="{{ $teacher->id }}"
                                                 {{ $teacher->id == $subject->teacher_id ? 'selected' : '' }}>
-                                                {{ $teacher->Name }}</option>
+                                                {{ $teacher->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
