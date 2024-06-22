@@ -6,6 +6,7 @@ namespace App\Repository;
 use App\Grade;
 use App\Subject;
 use App\Teacher;
+use App\Repository\SubjectRepositoryInterface;
 
 class SubjectRepository implements SubjectRepositoryInterface
 {
