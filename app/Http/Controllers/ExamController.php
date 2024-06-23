@@ -4,38 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Exam;
 use Illuminate\Http\Request;
+use App\Repository\ExamRepositoryInterface;
 
 class ExamController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $exam;
+    public function __construct(ExamRepositoryInterface $examRepositoryInterface)
+    {
+        $this->exam = $examRepositoryInterface;
+    }
     public function index()
     {
-        //
+        return $this->exam->index();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        return $this->exam->create();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        return $this->exam->store($request);
     }
 
     /**
@@ -55,9 +47,9 @@ class ExamController extends Controller
      * @param  \App\Exam  $exam
      * @return \Illuminate\Http\Response
      */
-    public function edit(Exam $exam)
+    public function edit($id)
     {
-        //
+        return $this->exam->edit($id);
     }
 
     /**
@@ -67,9 +59,9 @@ class ExamController extends Controller
      * @param  \App\Exam  $exam
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Exam $exam)
+    public function update(Request $request)
     {
-        //
+        return $this->exam->update($request);
     }
 
     /**
@@ -78,8 +70,8 @@ class ExamController extends Controller
      * @param  \App\Exam  $exam
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Exam $exam)
+    public function destroy(Request $request)
     {
-        //
+        return $this->exam->destroy($request->id);
     }
 }

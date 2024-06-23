@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FeeController;
+use App\Http\Controllers\ExamController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\SectionController;
@@ -163,6 +164,17 @@ Route::group(
 
         Route::patch('/subjects', [SubjectController::class, 'update'])->name('subjects.update');
         Route::delete('/subjects', [SubjectController::class, 'destroy'])->name('subjects.destroy');
+
+        //exams
+        Route::get('/exams', [ExamController::class, 'index'])->name('exams.index');
+
+        Route::post('/exams', [ExamController::class, 'store'])->name('exams.store');
+        Route::get('/exams/create', [ExamController::class, 'create'])->name('exams.create');
+        Route::get('/exams/{id}', [ExamController::class, 'edit'])->name('exams.edit');
+        Route::delete('/exams', [ExamController::class, 'destroy'])->name('exams.destroy');
+        Route::patch('/exams', [ExamController::class, 'update'])->name('exams.update');
+
+
 
 
 
