@@ -181,6 +181,8 @@
                         <ul id="Quizes-icon" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="{{ route('quizzes.index') }}"> قائمةالاختبارات</a> </li>
 
+                            <li> <a href="{{ route('questions.index') }}"> قائمة الاسئلة</a> </li>
+
                         </ul>
                     </li>
 

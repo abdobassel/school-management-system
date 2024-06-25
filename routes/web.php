@@ -13,6 +13,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\GradutedController;
+use App\Http\Controllers\QusetionController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\AttendanceController;
@@ -184,6 +185,16 @@ Route::group(
         Route::put('/quizzes/update', [QuizeController::class, 'update'])->name('quizzes.update');
       
         Route::delete('/quizzes', [QuizeController::class, 'destroy'])->name('quizzes.destroy');
+         //Questions
+         Route::get('/questions', [QusetionController::class, 'index'])->name('questions.index');
+
+         Route::get('/questions/create', [QusetionController::class, 'create'])->name('questions.create');
+         Route::post('/questions', [QusetionController::class, 'store'])->name('questions.store');
+ 
+         Route::get('/questions/{id}', [QusetionController::class, 'edit'])->name('questions.edit');
+         Route::put('/questions/update', [QusetionController::class, 'update'])->name('questions.update');
+       
+         Route::delete('/questions', [QusetionController::class, 'destroy'])->name('questions.destroy');
 
 
 

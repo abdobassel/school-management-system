@@ -9,6 +9,7 @@ use App\Repository\QuizzRepository;
 use App\Repository\StudentRepository;
 use App\Repository\SubjectRepository;
 use App\Repository\TeacherRepository;
+use App\Repository\QuestionRepository;
 use App\Repository\GraduatedRepository;
 use App\Repository\PromotionRepository;
 use Illuminate\Support\ServiceProvider;
@@ -22,6 +23,7 @@ use App\Repository\StudentAccountRepository;
 use App\Repository\StudentRepositoryInterface;
 use App\Repository\SubjectRepositoryInterface;
 use App\Repository\TeacherRepositoryInterface;
+use App\Repository\QuestionRepositoryInterface;
 use App\Repository\GraduatedRepositoryInterface;
 use App\Repository\PromotionRepositoryInterface;
 use App\Repository\AttendanceRepositoryInterface;
@@ -96,6 +98,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             QuizzRepositoryInterface::class,
             QuizzRepository::class,
+
+        );
+        $this->app->bind(
+            QuestionRepositoryInterface::class,
+            QuestionRepository::class,
 
         );
     }
