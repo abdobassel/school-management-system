@@ -10,6 +10,7 @@ use App\Http\Controllers\GradeController;
 use App\Http\Controllers\QuizeController;
 use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
@@ -208,6 +209,11 @@ Route::group(
         Route::delete('/library', [LibraryController::class, 'destroy'])->name('library.destroy');
 
         Route::get('download/{folder}/{file}', [LibraryController::class, 'download'])->name('library.download');
+
+        //settings
+        Route::get('/settings',[SettingController::class,'index'])->name('settings.index');
+
+        Route::put('/settings',[SettingController::class,'update'])->name('settings.update');
 
 
 

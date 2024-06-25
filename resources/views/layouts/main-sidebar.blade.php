@@ -200,6 +200,16 @@
 
                         </ul>
                     </li>
+                    <!-- Settings-->
+                    <li>
+                        <a href="{{ route('settings.index') }}">
+                            <div class="pull-left"><i class="fas fa-book-open"></i><span
+                                    class="right-nav-text">الاعدادت</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+
+                    </li>
 
 
                     <!-- menu item todo-->

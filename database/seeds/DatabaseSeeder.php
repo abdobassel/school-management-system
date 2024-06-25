@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(GenderSeeder::class);
         $this->call(MyParentSeeder::class);
         $this->call(StudentSeeder::class);
+        $this->call(SettingSeeder::class);
         // php artisan migrate:fresh --seed
     }
 }
