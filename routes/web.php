@@ -7,6 +7,7 @@ use App\Http\Controllers\FeeController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GradeController;
+use App\Http\Controllers\QuizeController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
@@ -173,6 +174,16 @@ Route::group(
         Route::get('/exams/{id}', [ExamController::class, 'edit'])->name('exams.edit');
         Route::delete('/exams', [ExamController::class, 'destroy'])->name('exams.destroy');
         Route::patch('/exams', [ExamController::class, 'update'])->name('exams.update');
+        //Quizzes
+        Route::get('/quizzes', [QuizeController::class, 'index'])->name('quizzes.index');
+
+        Route::get('/quizzes/create', [QuizeController::class, 'create'])->name('quizzes.create');
+        Route::post('/quizzes', [QuizeController::class, 'store'])->name('quizzes.store');
+
+        Route::get('/quizzes/{id}', [QuizeController::class, 'edit'])->name('quizzes.edit');
+        Route::put('/quizzes/update', [QuizeController::class, 'update'])->name('quizzes.update');
+      
+        Route::delete('/quizzes', [QuizeController::class, 'destroy'])->name('quizzes.destroy');
 
 
 
