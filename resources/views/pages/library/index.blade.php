@@ -47,9 +47,10 @@
                                                 <td>{{ $book->classroom->name }}</td>
                                                 <td>{{ $book->section->name }}</td>
                                                 <td>
-                                                    <a href="" title="تحميل الكتاب"
-                                                        class="btn btn-warning btn-sm" role="button"
-                                                        aria-pressed="true"><i class="fas fa-download"></i></a>
+                                                    <a href="{{ route('library.download', [$book->title, $book->file_name]) }}"
+                                                        title="تحميل الكتاب" class="btn btn-warning btn-sm"
+                                                        role="button" aria-pressed="true"><i
+                                                            class="fas fa-download"></i></a>
                                                     <a href="{{ route('library.edit', $book->id) }}"
                                                         class="btn btn-info btn-sm" role="button"
                                                         aria-pressed="true"><i class="fa fa-edit"></i></a>

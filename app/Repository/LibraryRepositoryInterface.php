@@ -17,4 +17,6 @@ interface LibraryRepositoryInterface
     public function update($request);
 
     public function destroy($id);
+
+    public function download($folder, $file);
 }

@@ -205,6 +205,12 @@ Route::group(
 
         Route::post('/library', [LibraryController::class, 'store'])->name('library.store');
 
+        Route::delete('/library', [LibraryController::class, 'destroy'])->name('library.destroy');
+
+        Route::get('download/{folder}/{file}', [LibraryController::class, 'download'])->name('library.download');
+
+
+
 
 
 

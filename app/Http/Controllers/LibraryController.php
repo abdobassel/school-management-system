@@ -55,4 +55,8 @@ class LibraryController extends Controller
     {
         return $this->library->destroy($request);
     }
+    public function download($folder, $fileName)
+    {
+        return $this->library->download($folder, $fileName);
+    }
 }

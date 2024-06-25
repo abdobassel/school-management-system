@@ -106,13 +106,32 @@ class LibraryRepository implements LibraryRepositoryInterface
     public function destroy($request)
     {
 
-        library::destroy($request->id);
-        toastr()->error(trans('messages.Delete'));
+        $library  =  library::findOrFail($request->id);
+
+
+        $filePath = public_path('\attachments/library/' . $library->title . '/' . $library->file_name);
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
+        $dirPath = public_path('\attachments/library/' . $library->title);
+        if (is_dir($dirPath)) {
+            rmdir($dirPath);
+        } // هنا بحذف المجلد نفسه لعد حذف الملف
+
+        $library->delete();
+
+        toastr()->success(trans('messages.Delete'));
         return redirect()->route('library.index');
     }
 
-    public function download($filename)
+    public function download($folder, $filename)
     {
-        return response()->download(public_path('attachments/library/' . $filename));
+        $filePath = public_path('attachments/library/' . $folder . '/' . $filename);
+
+        if (file_exists($filePath)) {
+            return response()->download($filePath);
+        } else {
+            return redirect()->back()->withErrors(['error' => 'File not found.']);
+        }
     }
 }
