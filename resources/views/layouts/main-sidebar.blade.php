@@ -185,6 +185,21 @@
 
                         </ul>
                     </li>
+                    <!-- Library-->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#Library-icon">
+                            <div class="pull-left"><i class="fas fa-book-open"></i><span
+                                    class="right-nav-text">المكتبة</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="Library-icon" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('library.index') }}"> الكتب</a> </li>
+
+
+
+                        </ul>
+                    </li>
 
 
                     <!-- menu item todo-->

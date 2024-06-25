@@ -8,6 +8,7 @@ use App\Http\Controllers\ExamController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\QuizeController;
+use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
@@ -183,18 +184,26 @@ Route::group(
 
         Route::get('/quizzes/{id}', [QuizeController::class, 'edit'])->name('quizzes.edit');
         Route::put('/quizzes/update', [QuizeController::class, 'update'])->name('quizzes.update');
-      
-        Route::delete('/quizzes', [QuizeController::class, 'destroy'])->name('quizzes.destroy');
-         //Questions
-         Route::get('/questions', [QusetionController::class, 'index'])->name('questions.index');
 
-         Route::get('/questions/create', [QusetionController::class, 'create'])->name('questions.create');
-         Route::post('/questions', [QusetionController::class, 'store'])->name('questions.store');
- 
-         Route::get('/questions/{id}', [QusetionController::class, 'edit'])->name('questions.edit');
-         Route::put('/questions/update', [QusetionController::class, 'update'])->name('questions.update');
-       
-         Route::delete('/questions', [QusetionController::class, 'destroy'])->name('questions.destroy');
+        Route::delete('/quizzes', [QuizeController::class, 'destroy'])->name('quizzes.destroy');
+        //Questions
+        Route::get('/questions', [QusetionController::class, 'index'])->name('questions.index');
+
+        Route::get('/questions/create', [QusetionController::class, 'create'])->name('questions.create');
+        Route::post('/questions', [QusetionController::class, 'store'])->name('questions.store');
+
+        Route::get('/questions/{id}', [QusetionController::class, 'edit'])->name('questions.edit');
+        Route::put('/questions/update', [QusetionController::class, 'update'])->name('questions.update');
+
+        Route::delete('/questions', [QusetionController::class, 'destroy'])->name('questions.destroy');
+        //Library
+        Route::get('/library', [LibraryController::class, 'index'])->name('library.index');
+
+        Route::get('/library/create', [LibraryController::class, 'create'])->name('library.create');
+        Route::get('/library/{id}', [LibraryController::class, 'edit'])->name('library.edit');
+        Route::put('/library/update', [LibraryController::class, 'update'])->name('library.update');
+
+        Route::post('/library', [LibraryController::class, 'store'])->name('library.store');
 
 
 
