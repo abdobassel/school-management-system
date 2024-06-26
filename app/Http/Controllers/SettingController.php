@@ -39,8 +39,41 @@ class SettingController extends Controller
     }
 
 
-    public function update(Request $request, Setting $setting)
+    public function update(Request $request)
     {
-        //
+
+        try {
+            $info = $request->except('_token', '_method', 'logo');
+            foreach ($info as $key => $value) {
+                Setting::where('key', $key)->update(['value' => $value]);
+            }
+
+
+
+            if ($request->hasfile('logo')) {
+
+                $file = $request->file('logo');
+
+                $logo_name = $request->file('logo')->getClientOriginalName();
+                Setting::where('key', 'logo')->update(['value' => $logo_name]);
+                $filePath = public_path('\attachments/logo/' . $logo_name);
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
+
+                $path =   public_path('attachments/logo/' . $logo_name);
+                if (!file_exists($path)) {
+                    mkdir($path, 0777, true);
+                }
+                $file->move($path, $logo_name);
+            }
+
+
+            toastr()->success(trans('messages.Update'));
+            return back();
+        } catch (\Exception $e) {
+
+            return redirect()->back()->with(['error' => $e->getMessage()]);
+        }
     }
 }
