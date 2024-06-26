@@ -106,7 +106,7 @@
                                 <div class="col-lg-9">
                                     <div class="mb-3">
                                         <img style="width: 100px" height="100px"
-                                            src="{{ URL::asset('attachments/logo/' . $setting['logo']) }}"
+                                            src="{{ URL::asset('attachments/logo/' . $setting['logo'] . '/' . $setting['logo']) }}"
                                             alt="">
                                     </div>
                                     <input name="logo" accept="image/*" type="file" class="file-input"
