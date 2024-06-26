@@ -19,6 +19,7 @@ use App\Http\Controllers\QusetionController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\FeeInvoiceController;
 use App\Http\Controllers\PaymentStudentController;
 use App\Http\Controllers\ProcessingFeesController;
@@ -36,11 +37,19 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+// Route::get('/', function () {
+//     return view('auth.login');
+// });  // نحذف ده عشان امالتي اوث بنعمله بنفسنا بقى لما نشوف
+
+
+Route::get('/', [HomeController::class, 'index'])->name('selection'); // جديد هنا عشان المالتي اوث
+
+Route::get('/login/{type}', [LoginController::class, 'loginForm'])->middleware('guest')->name('login.show');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::get('/logout/{type}', [LoginController::class, 'logout'])->name('logout');
+
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
@@ -49,7 +58,7 @@ Route::group(
     function () {
 
 
-        Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+        Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
         Route::get('/grades', [GradeController::class, 'index'])->name('grades.index');
         Route::post('/grades', [GradeController::class, 'store'])->name('grades.store');
         Route::delete('/grades/{id}', [GradeController::class, 'destroy'])->name('grades.destroy');
