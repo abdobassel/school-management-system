@@ -89,7 +89,7 @@ Route::group(
         Route::patch('/sections', [SectionController::class, 'update'])->name('sections.update');
         Route::delete('/sections', [SectionController::class, 'destroy'])->name('sections.destroy');
 
-        Route::view('add_parent', 'livewire.Show_Form');
+        Route::view('add_parent', 'livewire.Show_Form')->name('add_parent');
 
 
         // teachers
