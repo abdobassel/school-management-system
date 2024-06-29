@@ -56,7 +56,13 @@ Route::group(
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth']
     ],
     function () {
-
+        ////// dashboard student ////////
+   
+        Route::get('/student/dashboard', function () {
+            return view('pages.students.dashboard');
+        })->name('student.dashboard')->middleware('auth:student');
+        /////////// multi auth
+        ////////////////////////////
 
         Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
         Route::get('/grades', [GradeController::class, 'index'])->name('grades.index');
