@@ -33,8 +33,34 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        return $request;
+
+        $email = $request->email;
+        $password = $request->password;
+        $guardType = '';
+        if ($request->type == 'student') {
+            $guardType = 'student';
+        } elseif ($request->type == 'teacher') {
+            $guardType = 'teacher';
+        } elseif ($request->type == 'parent') {
+            $guardType = 'parent';
+        } else {
+            $guardType = 'web';
+        }
+
+
+        if (auth()->guard($guardType)->attempt(['email' => $email, 'password' => $password])) {
+            if ($guardType == 'student') {
+                return redirect()->intended(RouteServiceProvider::STUDENT);
+            } elseif ($guardType == 'teacher') {
+                return redirect()->intended(RouteServiceProvider::TEACHER);
+            } elseif ($guardType == 'parent') {
+                return redirect()->intended(RouteServiceProvider::PARENT);
+            } else {
+                return redirect()->intended(RouteServiceProvider::HOME);
+            }
+        }
     }
+
 
     public function loginForm($type)
     {
@@ -43,13 +69,12 @@ class LoginController extends Controller
 
     public function logout(Request $request, $type)
     {
-        // Auth::guard($type)->logout();
+        Auth::guard($type)->logout();
 
-        // $request->session()->invalidate();
+        $request->session()->invalidate();
 
-        // $request->session()->regenerateToken();
+        $request->session()->regenerateToken();
 
-        // return redirect('/');
-        return $type;
+        return redirect('/');
     }
 }
