@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="float-right text-right">
                                     <p class="card-text text-dark">عدد الطلاب</p>
-                                    <h4>{{ \App\Student::count() }}</h4>
+                                    <h4>{{ $count_students }}</h4>
                                 </div>
                             </div>
                             <p class="text-muted pt-3 mb-0 mt-2 border-top">
@@ -74,50 +74,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
-                    <div class="card card-statistics h-100">
-                        <div class="card-body">
-                            <div class="clearfix">
-                                <div class="float-left">
-                                    <span class="text-warning">
-                                        <i class="fas fa-chalkboard-teacher highlight-icon" aria-hidden="true"></i>
-                                    </span>
-                                </div>
-                                <div class="float-right text-right">
-                                    <p class="card-text text-dark">عدد المعلمين</p>
-                                    <h4>{{ \App\Teacher::count() }}</h4>
-                                </div>
-                            </div>
-                            <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                                <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a
-                                    href="{{ route('teachers.index') }}" target="_blank"><span class="text-danger">عرض
-                                        البيانات</span></a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
-                    <div class="card card-statistics h-100">
-                        <div class="card-body">
-                            <div class="clearfix">
-                                <div class="float-left">
-                                    <span class="text-success">
-                                        <i class="fas fa-user-tie highlight-icon" aria-hidden="true"></i>
-                                    </span>
-                                </div>
-                                <div class="float-right text-right">
-                                    <p class="card-text text-dark">عدد اولياء الامور</p>
-                                    <h4>{{ \App\MyParent::count() }}</h4>
-                                </div>
-                            </div>
-                            <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                                <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a
-                                    href="{{ route('add_parent') }}" target="_blank"><span class="text-danger">عرض
-                                        البيانات</span></a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+
+
                 <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
                     <div class="card card-statistics h-100">
                         <div class="card-body">
@@ -128,8 +86,8 @@
                                     </span>
                                 </div>
                                 <div class="float-right text-right">
-                                    <p class="card-text text-dark">عدد الفصول الدراسية</p>
-                                    <h4>{{ \App\Section::count() }}</h4>
+                                    <p class="card-text text-dark">عددالاقسام </p>
+                                    <h4>{{ $count_sections }}</h4>
                                 </div>
                             </div>
                             <p class="text-muted pt-3 mb-0 mt-2 border-top">
@@ -165,15 +123,15 @@
                                             </li>
 
                                             <li class="nav-item">
-                                                <a class="nav-link" id="teachers-tab" data-toggle="tab"
-                                                    href="#teachers" role="tab" aria-controls="teachers"
+                                                <a class="nav-link" id="teachers-tab" data-toggle="tab" href="#teachers"
+                                                    role="tab" aria-controls="teachers"
                                                     aria-selected="false">المعلمين
                                                 </a>
                                             </li>
 
                                             <li class="nav-item">
-                                                <a class="nav-link" id="parents-tab" data-toggle="tab"
-                                                    href="#parents" role="tab" aria-controls="parents"
+                                                <a class="nav-link" id="parents-tab" data-toggle="tab" href="#parents"
+                                                    role="tab" aria-controls="parents"
                                                     aria-selected="false">اولياء الامور
                                                 </a>
                                             </li>

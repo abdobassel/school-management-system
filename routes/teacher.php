@@ -1,5 +1,7 @@
 <?php
 
+use App\Student;
+use App\Teacher;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -24,7 +26,15 @@ Route::group(
 
         //==============================dashboard============================
         Route::get('/teacher/dashboard', function () {
-            return view('pages.teachers.dashboard.dashboard');
+
+            $ids = Teacher::findorFail(auth()->user()->id)->sections()->pluck('section_id');
+            $data['count_sections'] = $ids->count();
+            $data['count_students'] = Student::whereIn('section_id', $ids)->count();
+
+            //        $ids = DB::table('teacher_section')->where('teacher_id',auth()->user()->id)->pluck('section_id');
+            //        $count_sections =  $ids->count();
+            //        $count_students = DB::table('students')->whereIn('section_id',$ids)->count();
+            return view('pages.Teachers.dashboard.dashboard', $data);
         });
     }
 );
