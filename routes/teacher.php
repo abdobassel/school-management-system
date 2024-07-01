@@ -3,6 +3,7 @@
 use App\Student;
 use App\Teacher;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Teacher\TeacherStudentController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -36,5 +37,7 @@ Route::group(
             //        $count_students = DB::table('students')->whereIn('section_id',$ids)->count();
             return view('pages.Teachers.dashboard.dashboard', $data);
         });
+        Route::get('/teacher/students', [TeacherStudentController::class, 'index'])->name('teacherStudents.index');
+        Route::post('/teacher/attendance', [TeacherStudentController::class, 'attendance'])->name('teacher_attendance.store');
     }
 );

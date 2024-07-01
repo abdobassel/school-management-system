@@ -14,7 +14,8 @@
 
         <!-- الطلاب-->
         <li>
-            <a href="#"><i class="fas fa-user-graduate"></i><span class="right-nav-text">الطلاب</span></a>
+            <a href="{{ route('teacherStudents.index') }}"><i class="fas fa-user-graduate"></i><span
+                    class="right-nav-text">الطلاب</span></a>
         </li>
 
 
