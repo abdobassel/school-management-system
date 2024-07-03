@@ -3,6 +3,7 @@
 use App\Student;
 use App\Teacher;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Teacher\QuizeTeacherController;
 use App\Http\Controllers\Teacher\TeacherStudentController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -39,5 +40,19 @@ Route::group(
         });
         Route::get('/teacher/students', [TeacherStudentController::class, 'index'])->name('teacherStudents.index');
         Route::post('/teacher/attendance', [TeacherStudentController::class, 'attendance'])->name('teacher_attendance.store');
+
+        // quize
+        Route::get('/teacher/quizes', [QuizeTeacherController::class, 'index'])->name('quizesTeacher.index');
+        Route::get('/teacher/quizes/create', [QuizeTeacherController::class, 'create'])->name('quizesTeacher.create');
+
+        Route::post('/teacher/quizes', [QuizeTeacherController::class, 'store'])->name('quizesTeacher.store');
+        Route::get('/teacher/quizes/edit/{id}', [QuizeTeacherController::class, 'edit'])->name('quizzerTeacher.edit');
+        Route::put('/teacher/quizes', [QuizeTeacherController::class, 'update'])->name('quizesTeacher.update');
+        Route::delete('/teacher/quizes', [QuizeTeacherController::class, 'destroy'])->name('quizesTeacher.destroy');
+
+
+        ////
+        Route::get('/Get_classrooms/{id}', [QuizeTeacherController::class, 'getClassesrooms']);
+        Route::get('/Get_Sections/{id}', [QuizeTeacherController::class, 'getSections']);
     }
 );

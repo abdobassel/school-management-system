@@ -57,7 +57,7 @@ Route::group(
     ],
     function () {
         ////// dashboard student ////////
-   
+
         Route::get('/student/dashboard', function () {
             return view('pages.students.dashboard');
         })->name('student.dashboard')->middleware('auth:student');
