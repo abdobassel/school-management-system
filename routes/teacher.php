@@ -55,6 +55,11 @@ Route::group(
         /// create question
         Route::get('/teacher/questions/{quize_id}', [QuestionsTeacherController::class, 'show'])->name('questionTeacher.show');
         Route::post('/teacher/questions/', [QuestionsTeacherController::class, 'store'])->name('questionTeacher.store');
+        Route::get('/teacher/questions/{id}/edit', [QuestionsTeacherController::class, 'edit'])->name('questionTeacher.edit');
+        Route::put('/teacher/question/', [QuestionsTeacherController::class, 'update'])->name('questionTeacher.update');
+        Route::delete('/teacher/questions/{id}', [QuestionsTeacherController::class, 'destroy'])->name('questionTeacher.destroy');
+
+
 
 
 

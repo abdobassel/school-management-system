@@ -15,6 +15,8 @@
 @section('content')
 <!-- row -->
 <div class="row">
+    <h2> تعديل سؤال :<span class="text-danger">{{ $question->title }}</span>
+    </h2>
     <div class="col-md-12 mb-30">
         <div class="card card-statistics h-100">
             <div class="card-body">
@@ -30,15 +32,17 @@
                 <div class="col-xs-12">
                     <div class="col-md-12">
                         <br>
-                        <form action="" method="post" autocomplete="off">
-                            @method('PUT')
+                        <form action="{{ route('questionTeacher.update') }}" method="POST">
                             @csrf
+                            @method('PUT')
+
                             <div class="form-row">
 
                                 <div class="col">
                                     <label for="title">اسم السؤال</label>
                                     <input type="text" name="title" id="input-name"
                                         class="form-control form-control-alternative" value="{{ $question->title }}">
+                                    <input type="hidden" name="id" id="input-name" value="{{ $question->id }}">
 
                                 </div>
                             </div>
@@ -74,7 +78,8 @@
                                             </option>
                                             <option value="15" {{ $question->score == 15 ? 'selected' : '' }}>15
                                             </option>
-                                            <option value="20" {{ $question->score == 20 ? 'selected' : '' }}>20
+                                            <option value="20" {{ $question->score == 20 ? 'selected' : '' }}>
+                                                20
                                             </option>
                                         </select>
                                     </div>

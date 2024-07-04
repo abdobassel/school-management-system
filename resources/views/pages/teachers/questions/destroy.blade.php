@@ -1,9 +1,9 @@
 <div class="modal fade" id="delete_exam{{ $question->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form action="" method="post">
-            {{ method_field('delete') }}
-            {{ csrf_field() }}
+        <form action="{{ route('questionTeacher.destroy', $question->id) }}" method="post">
+            @method('DELETE')
+            @csrf
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title" id="exampleModalLabel">حذف سؤال
@@ -13,15 +13,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p> {{ trans('My_Classes_trans.Warning_Grade') }} <span
-                            class="text-danger">{{ $question->title }}</span></p>
+                    <p>هل أنت متأكد من حذف السؤال <span class="text-danger">{{ $question->title }}</span>؟</p>
                 </div>
                 <div class="modal-footer">
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"
-                            data-dismiss="modal">{{ trans('My_Classes_trans.Close') }}</button>
-                        <button type="submit" class="btn btn-danger">{{ trans('My_Classes_trans.submit') }}</button>
-                    </div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
+                    <button type="submit" class="btn btn-danger">حذف</button>
                 </div>
             </div>
         </form>
