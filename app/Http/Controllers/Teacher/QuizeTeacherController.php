@@ -23,10 +23,10 @@ class QuizeTeacherController extends Controller
 
     public function show($id)
     {
-        $quizze = Quize::findOrFail($id);
+        $quizz = Quize::findOrFail($id);
         $questions = QuesetionQ::where('quize_id', $id)->get();
-        return $questions;
-        // return view('pages.teachers.quizzes.index', compact('quizzes'));
+        //return $questions;
+        return view('pages.teachers.questions.index', compact('quizz', 'questions'));
     }
 
 

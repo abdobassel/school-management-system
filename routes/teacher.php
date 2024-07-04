@@ -5,6 +5,7 @@ use App\Teacher;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Teacher\QuizeTeacherController;
 use App\Http\Controllers\Teacher\TeacherStudentController;
+use App\Http\Controllers\Teacher\QuestionsTeacherController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -49,8 +50,12 @@ Route::group(
         Route::get('/teacher/quizes/edit/{id}', [QuizeTeacherController::class, 'edit'])->name('quizzerTeacher.edit');
         Route::put('/teacher/quizes', [QuizeTeacherController::class, 'update'])->name('quizesTeacher.update');
         Route::delete('/teacher/quizes', [QuizeTeacherController::class, 'destroy'])->name('quizesTeacher.destroy');
-        //show q
+        //show questions quize_id
         Route::get('/teacher/quizes_questions/{quize_id}', [QuizeTeacherController::class, 'show'])->name('quizesTeacher.show');
+        /// create question
+        Route::get('/teacher/questions/{quize_id}', [QuestionsTeacherController::class, 'show'])->name('questionTeacher.show');
+        Route::post('/teacher/questions/', [QuestionsTeacherController::class, 'store'])->name('questionTeacher.store');
+
 
 
         ////
