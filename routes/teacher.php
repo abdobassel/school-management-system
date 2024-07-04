@@ -49,6 +49,8 @@ Route::group(
         Route::get('/teacher/quizes/edit/{id}', [QuizeTeacherController::class, 'edit'])->name('quizzerTeacher.edit');
         Route::put('/teacher/quizes', [QuizeTeacherController::class, 'update'])->name('quizesTeacher.update');
         Route::delete('/teacher/quizes', [QuizeTeacherController::class, 'destroy'])->name('quizesTeacher.destroy');
+        //show q
+        Route::get('/teacher/quizes_questions/{quize_id}', [QuizeTeacherController::class, 'show'])->name('quizesTeacher.show');
 
 
         ////

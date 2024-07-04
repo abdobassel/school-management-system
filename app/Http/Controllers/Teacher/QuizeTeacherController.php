@@ -7,6 +7,7 @@ use App\Quize;
 use App\Section;
 use App\Subject;
 use App\Classroom;
+use App\QuesetionQ;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -17,6 +18,15 @@ class QuizeTeacherController extends Controller
     {
         $quizzes = Quize::where('teacher_id', auth()->user()->id)->get();
         return view('pages.teachers.quizzes.index', compact('quizzes'));
+    }
+
+
+    public function show($id)
+    {
+        $quizze = Quize::findOrFail($id);
+        $questions = QuesetionQ::where('quize_id', $id)->get();
+        return $questions;
+        // return view('pages.teachers.quizzes.index', compact('quizzes'));
     }
 
 

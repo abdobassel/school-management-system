@@ -49,12 +49,19 @@
                                                 <td>{{ $quizze->section->name }}</td>
                                                 <td>
                                                     <a href="{{ route('quizzerTeacher.edit', $quizze->id) }}"
-                                                        class="btn btn-info btn-sm" role="button"
+                                                        class="btn btn-info btn-sm" role="button" title=" تعديل"
                                                         aria-pressed="true"><i class="fa fa-edit"></i></a>
+
+
                                                     <button type="button" class="btn btn-danger btn-sm"
                                                         data-toggle="modal"
                                                         data-target="#delete_exam{{ $quizze->id }}" title="حذف"><i
                                                             class="fa fa-trash"></i></button>
+
+                                                    <a href="{{ route('quizesTeacher.show', $quizze->id) }}"
+                                                        class="btn btn-warning btn-sm" role="button"
+                                                        title="عرض الاسئلة" aria-pressed="true"><i
+                                                            class="fa fa-edit"></i></a>
                                                 </td>
                                             </tr>
 
