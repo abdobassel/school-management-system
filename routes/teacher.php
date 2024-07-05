@@ -2,8 +2,10 @@
 
 use App\Student;
 use App\Teacher;
+use LDAP\Result;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Teacher\QuizeTeacherController;
+use App\Http\Controllers\Teacher\ProfileTeacherController;
 use App\Http\Controllers\Teacher\TeacherStudentController;
 use App\Http\Controllers\Teacher\QuestionsTeacherController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -58,7 +60,10 @@ Route::group(
         Route::get('/teacher/questions/{id}/edit', [QuestionsTeacherController::class, 'edit'])->name('questionTeacher.edit');
         Route::put('/teacher/question/', [QuestionsTeacherController::class, 'update'])->name('questionTeacher.update');
         Route::delete('/teacher/questions/{id}', [QuestionsTeacherController::class, 'destroy'])->name('questionTeacher.destroy');
+        //profile
+        Route::get('teacher/profile', [ProfileTeacherController::class, 'index'])->name('profileTeacher.index');
 
+        Route::put('teacher/profile', [ProfileTeacherController::class, 'update'])->name('profileTeacher.update');
 
 
 

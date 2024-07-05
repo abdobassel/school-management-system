@@ -49,7 +49,8 @@
 
         <!-- الملف الشخصي-->
         <li>
-            <a href="{{ route('settings.index') }}"><i class="fas fa-id-card-alt"></i><span class="right-nav-text">الملف
+            <a href="{{ route('profileTeacher.index') }}"><i class="fas fa-id-card-alt"></i><span
+                    class="right-nav-text">الملف
                     الشخصي</span></a>
         </li>
 
