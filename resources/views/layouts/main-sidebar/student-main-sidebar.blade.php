@@ -21,7 +21,7 @@
                 <div class="clearfix"></div>
             </a>
             <ul id="Exams-icon" class="collapse" data-parent="#sidebarnav">
-                <li> <a href="{{ route('exams.index') }}">{{ trans('main_trans.Exams') }}</a> </li>
+                <li> <a href="">{{ trans('main_trans.Exams') }}</a> </li>
                 <li> <a href="">قائمة الاسئلة</a> </li>
             </ul>
         </li>
@@ -35,9 +35,9 @@
                 <div class="clearfix"></div>
             </a>
             <ul id="Quizes-icon" class="collapse" data-parent="#sidebarnav">
-                <li> <a href="{{ route('quizzes.index') }}"> قائمةالاختبارات</a> </li>
+                <li> <a href=""> قائمةالاختبارات</a> </li>
 
-                <li> <a href="{{ route('questions.index') }}"> قائمة الاسئلة</a> </li>
+                <li> <a href=""> قائمة الاسئلة</a> </li>
 
             </ul>
         </li>
@@ -50,7 +50,7 @@
                 <div class="clearfix"></div>
             </a>
             <ul id="Library-icon" class="collapse" data-parent="#sidebarnav">
-                <li> <a href="{{ route('library.index') }}"> الكتب</a> </li>
+                <li> <a href=""> الكتب</a> </li>
 
 
 
