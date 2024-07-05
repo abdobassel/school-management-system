@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Student\ExamStudentrController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -26,5 +27,7 @@ Route::group(
         Route::get('/student/dashboard', function () {
             return view('pages.students.dashboard');
         });
+
+        Route::get('/student/exams', [ExamStudentrController::class, 'index'])->name('studentExams.index');
     }
 );
