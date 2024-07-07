@@ -39,4 +39,8 @@ class Quize extends Model
     {
         return $this->belongsTo(Section::class, 'section_id');
     }
+    public function degree()
+    {
+        return $this->hasMany(Degree::class, 'quizze_id');
+    }
 }

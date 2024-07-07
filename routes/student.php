@@ -29,5 +29,7 @@ Route::group(
         });
 
         Route::get('/student/exams', [ExamStudentrController::class, 'index'])->name('studentExams.index');
+
+        Route::get('/student/exams/show/{id}', [ExamStudentrController::class, 'show'])->name('studentExams.show');
     }
 );

@@ -17,6 +17,7 @@
 
 @livewire('show-question', ['quizze_id' => $quizze_id, 'student_id' => $student_id])
 
+
 @endsection
 @section('js')
 @toastr_js

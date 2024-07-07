@@ -17,8 +17,9 @@ class ExamStudentrController extends Controller
     {
         $quizzes = Quize::where('grade_id', auth()->user()->grade_id)
             ->where('section_id', auth()->user()->section_id)
-            ->where('classroom_id', auth()->user()->classroom_id)
-            ->orderBy('id', 'DESC')->get();
+            ->where('classroom_id', auth()->user()->classroom_id)->orderBy('id', 'DESC')->get();
+
+        // dd($quizzes);
 
         return view('pages.students.exams.index', compact('quizzes'));
     }
