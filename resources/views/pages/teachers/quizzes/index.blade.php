@@ -62,6 +62,10 @@
                                                         class="btn btn-warning btn-sm" role="button"
                                                         title="عرض الاسئلة" aria-pressed="true"><i
                                                             class="fa fa-edit"></i></a>
+                                                    <a href="{{ route('studentsQuizzeTeacher.show', $quizze->id) }}"
+                                                        class="btn btn-info btn-sm" role="button"
+                                                        title="عرض الطلاب المختبرين" aria-pressed="true"><i
+                                                            class="fa fa-edit"></i></a>
                                                 </td>
                                             </tr>
 

@@ -54,6 +54,10 @@ Route::group(
         Route::delete('/teacher/quizes', [QuizeTeacherController::class, 'destroy'])->name('quizesTeacher.destroy');
         //show questions quize_id
         Route::get('/teacher/quizes_questions/{quize_id}', [QuizeTeacherController::class, 'show'])->name('quizesTeacher.show');
+        // show students quizze -> fineshed quize
+
+        Route::get('/teacher/quizes_students/{quize_id}', [QuizeTeacherController::class, 'studentsQuizzeShow'])->name('studentsQuizzeTeacher.show');
+
         /// create question
         Route::get('/teacher/questions/{quize_id}', [QuestionsTeacherController::class, 'show'])->name('questionTeacher.show');
         Route::post('/teacher/questions/', [QuestionsTeacherController::class, 'store'])->name('questionTeacher.store');

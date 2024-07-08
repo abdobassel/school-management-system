@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Student\ExamStudentrController;
+use App\Http\Controllers\Student\ProfileStudentrController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -31,5 +32,10 @@ Route::group(
         Route::get('/student/exams', [ExamStudentrController::class, 'index'])->name('studentExams.index');
 
         Route::get('/student/exams/show/{id}', [ExamStudentrController::class, 'show'])->name('studentExams.show');
+
+        //profile
+        Route::get('student/profile', [ProfileStudentrController::class, 'index'])->name('profileStudent.index');
+
+        Route::put('student/profile', [ProfileStudentrController::class, 'update'])->name('profileStudent.update');
     }
 );

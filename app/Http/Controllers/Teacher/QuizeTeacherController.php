@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Teacher;
 
 use App\Grade;
 use App\Quize;
+use App\Degree;
 use App\Section;
 use App\Subject;
 use App\Classroom;
@@ -27,6 +28,23 @@ class QuizeTeacherController extends Controller
         $questions = QuesetionQ::where('quize_id', $id)->get();
         //return $questions;
         return view('pages.teachers.questions.index', compact('quizz', 'questions'));
+    }
+
+    public function studentsQuizzeShow($quizze_id)
+    {
+
+        $degrees = Degree::where('quizze_id', $quizze_id)->get();
+
+        foreach ($degrees as $degree) {
+            if ($degree->student) {
+                $students[] = $degree->student->name;
+            } else {
+                $students[] = "No student found for degree ID " . $degree->id;
+            }
+        }
+
+        // عرض جميع أسماء الطلاب
+        dd($degrees);
     }
 
 
