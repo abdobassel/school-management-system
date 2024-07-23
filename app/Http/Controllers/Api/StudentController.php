@@ -1,45 +1,36 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Api;
 
-use App\User;
+use App\Student;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateUser;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateStudent;
 use Illuminate\Support\Facades\Hash;
-use Symfony\Component\HttpFoundation\Response;
+use App\Http\Controllers\Auth\UserServices;
 
-class UserServices
+class StudentController extends Controller
 {
-    public function createUser(CreateUser $request)
-    {
-        // name // customerid // cost // status
 
-        $user = new User();
 
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
 
-        $user->save();
-
-        return $user;
-    }
     public function login(Request $request)
     {
-        $loginUserData = $request->validate([
+        $loginStudentData = $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|min:4'
         ]);
-        $user = User::where('email', $loginUserData['email'])->first();
-        if (!$user || !Hash::check($loginUserData['password'], $user->password)) {
+        $student = Student::where('email', $loginStudentData['email'])->first();
+        if (!$student || !Hash::check($loginStudentData['password'], $student->password)) {
             return response()->json([
                 'message' => 'Invalid Credentials'
             ], 401);
         }
-        $token = $user->createToken($user->name . '-AuthToken')->plainTextToken;
+        $token = $student->createToken($student->name . '-AuthToken')->plainTextToken;
         if ($token) {
             return response()->json([
-                'user' => $user,
+                'student' => $student->grade->name,
                 'access_token' => $token,
 
             ]);

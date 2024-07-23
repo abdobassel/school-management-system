@@ -44,6 +44,7 @@ return [
             'driver' => 'session',
             'provider' => 'students',
         ],
+
         'teacher' => [
             'driver' => 'session',
             'provider' => 'teachers',
@@ -53,10 +54,22 @@ return [
             'provider' => 'my_parents',
         ],
         'api' => [
-            'driver' => 'token',
+            'driver' => 'sanctum',
             'provider' => 'users',
             'hash' => false,
         ],
+        /////////////////////////////api-test//////////
+        'admin-api' => [
+            'driver' => 'sanctum',
+            'provider' => 'users',
+            'hash' => false,
+        ],
+        'student-api' => [
+            'driver' => 'sanctum',
+            'provider' => 'students',
+            'hash' => false,
+        ],
+        ////////////api end test //////////////////////
     ],
 
 

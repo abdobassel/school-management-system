@@ -20,6 +20,7 @@
         "livewire/livewire": "^2.12",
         "mcamara/laravel-localization": "^2.0",
         "spatie/laravel-translatable": "*",
+        "tymon/jwt-auth": "*",
         "yoeunes/toastr": "^2.3"
     },
     "require-dev": {

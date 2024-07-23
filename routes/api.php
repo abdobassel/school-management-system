@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Api\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,20 @@ use App\Http\Controllers\UserController;
 */
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/dashboard', [HomeController::class, 'index']);
+    Route::get('/dashboard', function () {
+        return response(auth()->user());
+    });
+
+    Route::get('/user', function () {
+        return response(auth()->user());
+    });
 });
+Route::middleware('guest')->group(function () {
+    Route::post('admin/register', [UserController::class, 'register']);
 
+    //Route::post('register',[UserController::class,'register']);
+    Route::post('admin/login', [UserController::class, 'login']);
 
-Route::post('users', [UserController::class, 'createUser']);
+    Route::post('student/login', [StudentController::class, 'login']);
+    Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
+});

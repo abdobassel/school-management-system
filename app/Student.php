@@ -2,17 +2,17 @@
 
 namespace App;
 
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-
 class Student extends Authenticatable
 {
     use SoftDeletes;
 
-    use HasTranslations;
+    use HasTranslations, HasApiTokens;
     public $translatable = ['name'];
     protected $fillable = [
         'name', 'email', 'password', 'gender_id', 'nationalitiy_id', 'blood_id', 'Date_Birth', 'grade_id', 'classroom_id', 'section_id', 'parent_id', 'academic_year',
@@ -68,4 +68,9 @@ class Student extends Authenticatable
     {
         return $this->hasMany(Attendance::class, 'student_id');
     }
+
+
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 }
