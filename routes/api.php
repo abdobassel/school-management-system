@@ -23,8 +23,12 @@ use App\Http\Controllers\Api\TeacherController;
 Route::middleware('auth:sanctum')->group(function () {
 
     // admin api 
-    // 1 get students 
+    // 1 get students -teachers -etc....
     Route::prefix('admin')->group(function () {
+        // auth logout 
+        Route::post('logout', [AdminController::class, 'logout'])->middleware('auth:sanctum');
+
+
         Route::get('get_all_students', [AdminController::class, 'get_all_students']);
         Route::get('get_all_teachers', [AdminController::class, 'get_all_teachers']);
         Route::get('get_all_parents', [AdminController::class, 'get_all_parents']);
@@ -33,6 +37,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('get_specializations', [AdminController::class, 'get_specializations']);
 
         Route::post('create_teacher', [AdminController::class, 'create_teacher']);
+        Route::post('update_teacher', [AdminController::class, 'updateTeacher']);
     });
 });
 Route::middleware('guest')->group(function () {
@@ -53,13 +58,7 @@ Route::middleware('guest')->group(function () {
         Route::post('logout', [ParentController::class, 'logout'])->middleware('auth:sanctum');
     });
     Route::prefix('admin')->group(function () {
-        Route::post('logout', [AdminController::class, 'logout'])->middleware('auth:sanctum');
         Route::post('register', [AdminController::class, 'register']);
-
-
-
-
-
         Route::post('login', [AdminController::class, 'login']);
     });
 });

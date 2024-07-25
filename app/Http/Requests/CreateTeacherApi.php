@@ -33,7 +33,8 @@ class CreateTeacherApi extends ApiRequest
             'specialization_id' => 'required',
             'gender_id' => 'required',
             'joining_Date' => 'required',
-            'address' => ' required',
+            'address' => 'required',
+
         ];
     }
 }

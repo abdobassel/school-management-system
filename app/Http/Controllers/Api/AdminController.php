@@ -75,7 +75,7 @@ class AdminController extends Controller
         $data = ['genders' => Gender::all()];
         return response()->json($data, status: 200);
     }
-
+    // teachers 
     public function create_teacher(CreateTeacherApi $request)
     {
         $request->validate([
@@ -111,7 +111,43 @@ class AdminController extends Controller
             return response()->json(
 
                 status: 400,
-                data: ['msg' => 'failed create teacher', 'status' => false],
+                data: ['msg' => $e->getMessage(), 'status' => false],
+            );
+        }
+    }
+    public function updateTeacher(Request $request)
+
+    {
+
+
+        try {
+
+            $teacher = Teacher::findOrFail($request->id);
+
+            $teacher->email = $request->email;
+            $teacher->password = Hash::make($request->password);
+            $teacher->name = ['ar' => $request->name_ar, 'en' => $request->name_en];
+            $teacher->specialization_id = $request->specialization_id;
+            $teacher->gender_id = $request->gender_id;
+
+            $teacher->joined_date = $request->joining_Date;
+
+            $teacher->adderss = $request->address;
+            $teacher->save();
+
+
+            $teacher->load('gender', 'specialization');
+
+            // إخفاء حقل كلمة المرور وإرجاع البيانات مع رسالة بالتحديث
+            return response()->json([
+                'message' => 'Teacher updated successfully',
+                'data' => $teacher->makeHidden('password')->toArray(),
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json(
+
+                status: 400,
+                data: ['msg' => $e->getMessage(), 'status' => false],
             );
         }
     }
