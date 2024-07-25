@@ -4,7 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Api\AdminController;
+use App\Http\Controllers\Api\ParentController;
 use App\Http\Controllers\Api\StudentController;
+use App\Http\Controllers\Api\TeacherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,20 +21,45 @@ use App\Http\Controllers\Api\StudentController;
 */
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/dashboard', function () {
-        return response(auth()->user());
-    });
 
-    Route::get('/user', function () {
-        return response(auth()->user());
+    // admin api 
+    // 1 get students 
+    Route::prefix('admin')->group(function () {
+        Route::get('get_all_students', [AdminController::class, 'get_all_students']);
+        Route::get('get_all_teachers', [AdminController::class, 'get_all_teachers']);
+        Route::get('get_all_parents', [AdminController::class, 'get_all_parents']);
+        Route::get('get_genders', [AdminController::class, 'get_genders']);
+
+        Route::get('get_specializations', [AdminController::class, 'get_specializations']);
+
+        Route::post('create_teacher', [AdminController::class, 'create_teacher']);
     });
 });
 Route::middleware('guest')->group(function () {
-    Route::post('admin/register', [UserController::class, 'register']);
 
-    //Route::post('register',[UserController::class,'register']);
-    Route::post('admin/login', [UserController::class, 'login']);
 
-    Route::post('student/login', [StudentController::class, 'login']);
-    Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
+    Route::prefix('student')->group(function () {
+        Route::post('login', [StudentController::class, 'login']);
+        Route::post('logout', [StudentController::class, 'logout'])->middleware('auth:sanctum');
+    });
+
+    Route::prefix('teacher')->group(function () {
+        Route::post('login', [TeacherController::class, 'login']);
+        Route::post('logout', [TeacherController::class, 'logout'])->middleware('auth:sanctum');
+    });
+
+    Route::prefix('parent')->group(function () {
+        Route::post('login', [ParentController::class, 'login']);
+        Route::post('logout', [ParentController::class, 'logout'])->middleware('auth:sanctum');
+    });
+    Route::prefix('admin')->group(function () {
+        Route::post('logout', [AdminController::class, 'logout'])->middleware('auth:sanctum');
+        Route::post('register', [AdminController::class, 'register']);
+
+
+
+
+
+        Route::post('login', [AdminController::class, 'login']);
+    });
 });

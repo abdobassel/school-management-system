@@ -62,12 +62,22 @@ return [
         'admin-api' => [
             'driver' => 'sanctum',
             'provider' => 'users',
-            'hash' => false,
+
         ],
         'student-api' => [
             'driver' => 'sanctum',
             'provider' => 'students',
-            'hash' => false,
+
+        ],
+        'parent-api' => [
+            'driver' => 'sanctum',
+            'provider' => 'my_parents',
+
+        ],
+        'teacher-api' => [
+            'driver' => 'sanctum',
+            'provider' => 'teachers',
+
         ],
         ////////////api end test //////////////////////
     ],

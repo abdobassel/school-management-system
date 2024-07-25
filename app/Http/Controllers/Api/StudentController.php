@@ -27,10 +27,11 @@ class StudentController extends Controller
                 'message' => 'Invalid Credentials'
             ], 401);
         }
-        $token = $student->createToken($student->name . '-AuthToken')->plainTextToken;
+        $token = $student->createToken('studentToken', ['student'])->plainTextToken;
         if ($token) {
             return response()->json([
-                'student' => $student->grade->name,
+                'user' => $student,
+                'user_type' => 'student',
                 'access_token' => $token,
 
             ]);

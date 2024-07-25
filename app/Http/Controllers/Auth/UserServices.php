@@ -41,6 +41,7 @@ class UserServices
             return response()->json([
                 'user' => $user,
                 'access_token' => $token,
+                'user_type' => 'admin',
 
             ]);
         } else {

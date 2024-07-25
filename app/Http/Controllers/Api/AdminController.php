@@ -1,0 +1,118 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\User;
+use App\Gender;
+use App\Student;
+use App\Teacher;
+use App\MyParent;
+use App\Specialization;
+use Illuminate\Http\Request;
+use App\Http\Requests\CreateUser;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\CreateTeacherApi;
+use App\Http\Controllers\Auth\UserServices;
+use Symfony\Component\HttpFoundation\Response;
+
+class AdminController extends Controller
+{
+    private UserServices $userServices;
+    const TOKEN_NAME = 'adminToken';
+    public function __construct(UserServices $userService)
+    {
+        $this->userServices = $userService;
+    }
+    public function register(CreateUser $request)
+    {
+        $user =  $this->userServices->createUser($request);
+
+        if ($user) {
+            return response()->json([
+                'user' => $user,
+                'token' => $user->createToken(self::TOKEN_NAME, ['admin'])->plainTextToken,
+                //token as text and  returns in response
+            ]);
+        }
+    }
+    public function login(Request $request)
+    {
+        return $this->userServices->login($request);
+    }
+    public function logout(Request $request)
+    {
+        return $this->userServices->logout($request);
+    }
+
+    public function get_all_students()
+    {
+        $students =  Student::all();
+
+        return response()->json($students, status: 200);
+    }
+    public function get_all_teachers()
+    {
+        $teachers = Teacher::all();
+
+        return response()->json($teachers, status: 200);
+    }
+    public function get_all_parents()
+    {
+        $parents = MyParent::all();
+
+        return response()->json($parents, status: 200);
+    }
+    ///////////////////////
+    public function get_specializations()
+    {
+        $data = ['specializations' => Specialization::all()];
+        return response()->json($data, status: 200);
+    }
+    /////////////////////////
+    public function get_genders()
+    {
+        $data = ['genders' => Gender::all()];
+        return response()->json($data, status: 200);
+    }
+
+    public function create_teacher(CreateTeacherApi $request)
+    {
+        $request->validate([
+            'email' => 'required|unique:teachers,email|email',
+            'password' => 'required',
+            'name_ar' => 'required|string|min:2|max:60',
+            'name_en' => 'required|string|min:2|max:60',
+            'specialization_id' => 'required',
+            'gender_id' => 'required',
+            'joining_Date' => 'required',
+            'address' => ' required',
+        ]);
+
+        try {
+            $teacher = new Teacher();
+            $teacher->email = $request->email;
+            $teacher->password = Hash::make($request->password);
+            $teacher->name = ['ar' => $request->name_ar, 'en' => $request->name_en];
+            $teacher->specialization_id = $request->specialization_id;
+            $teacher->gender_id = $request->gender_id;
+
+            $teacher->joined_date = $request->joining_Date;
+
+            $teacher->adderss = $request->address;
+            $teacher->save();
+
+            return response()->json(
+                $teacher->makeHidden('password'),
+                201
+            );
+        } catch (\Exception $e) {
+
+            return response()->json(
+
+                status: 400,
+                data: ['msg' => 'failed create teacher', 'status' => false],
+            );
+        }
+    }
+}

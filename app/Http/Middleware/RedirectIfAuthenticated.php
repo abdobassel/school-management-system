@@ -34,6 +34,7 @@ class RedirectIfAuthenticated
             return redirect(RouteServiceProvider::PARENT);
         }
 
+
         return $next($request);
     }
 }
