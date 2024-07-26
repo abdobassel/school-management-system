@@ -76,6 +76,20 @@ class AdminController extends Controller
         return response()->json($data, status: 200);
     }
     // teachers 
+
+    function getSpecializationName($id)
+    {
+        // افترض أن لديك جدول للتخصصات به عمود 'name'
+        $specialization = Specialization::find($id);
+        return $specialization ? $specialization->name : 'Unknown';
+    }
+
+    function getGenderName($id)
+    {
+        // افترض أن لديك جدول للأنواع به عمود 'name'
+        $gender = Gender::find($id);
+        return $gender ? $gender->name : 'Unknown';
+    }
     public function create_teacher(CreateTeacherApi $request)
     {
         $request->validate([
@@ -96,25 +110,42 @@ class AdminController extends Controller
             $teacher->name = ['ar' => $request->name_ar, 'en' => $request->name_en];
             $teacher->specialization_id = $request->specialization_id;
             $teacher->gender_id = $request->gender_id;
-
             $teacher->joined_date = $request->joining_Date;
-
             $teacher->adderss = $request->address;
             $teacher->save();
 
-            return response()->json(
-                $teacher->makeHidden('password'),
-                201
-            );
+            // إعداد البيانات لإرجاعها في الاستجابة
+
+            $teacher->load('gender', 'specialization');
+            // $responseData = [
+            //     'id' => $teacher->id,
+            //     'name' => $teacher->name,
+            //     'email' => $teacher->email,
+            //     'gender' => $this->getGenderName($teacher->gender_id),
+            //     'specialization_id' =>  $teacher->specialization_id,
+            //     'gender_id' =>  $teacher->gender_id,
+            //     'specialization' => $this->getSpecializationName($teacher->specialization_id),
+            //     'joined_date' => $teacher->joined_date,
+            //     'address' => $teacher->adderss,
+            //     'created_at' => $teacher->created_at,
+            //     'updated_at' => $teacher->updated_at
+            // ];
+
+            return response()->json([
+                'message' => 'Teacher Created successfully',
+                'data' => $teacher->makeHidden('password')->toArray(),
+            ], 200);
         } catch (\Exception $e) {
-
             return response()->json(
-
-                status: 400,
-                data: ['msg' => $e->getMessage(), 'status' => false],
+                [
+                    'msg' => $e->getMessage(),
+                    'status' => false,
+                ],
+                400
             );
         }
     }
+
     public function updateTeacher(Request $request)
 
     {
