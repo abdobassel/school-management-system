@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Api\AdminController;
+use App\Http\Controllers\Api\GradeController;
 use App\Http\Controllers\Api\ParentController;
 use App\Http\Controllers\Api\StudentController;
 use App\Http\Controllers\Api\TeacherController;
@@ -28,16 +29,21 @@ Route::middleware('auth:sanctum')->group(function () {
         // auth logout 
         Route::post('logout', [AdminController::class, 'logout'])->middleware('auth:sanctum');
 
-
+        // get data for admin dashboard
         Route::get('get_all_students', [AdminController::class, 'get_all_students']);
         Route::get('get_all_teachers', [AdminController::class, 'get_all_teachers']);
         Route::get('get_all_parents', [AdminController::class, 'get_all_parents']);
         Route::get('get_genders', [AdminController::class, 'get_genders']);
 
         Route::get('get_specializations', [AdminController::class, 'get_specializations']);
-
+        // teachers
         Route::post('create_teacher', [AdminController::class, 'create_teacher']);
         Route::post('update_teacher', [AdminController::class, 'updateTeacher']);
+        Route::post('delete_teacher', [AdminController::class, 'deleteTeacher']);
+
+        //grades
+        Route::post('create_grade', [GradeController::class, 'store']);
+        Route::post('delete_grade', [GradeController::class, 'destroy']);
     });
 });
 Route::middleware('guest')->group(function () {

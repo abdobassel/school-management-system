@@ -182,4 +182,19 @@ class AdminController extends Controller
             );
         }
     }
+    public function deleteTeacher(Request $request)
+    {
+        try {
+            Teacher::findOrFail($request->id);
+            return response()->json([
+                ['message' => 'Teacher Deleted successfully'], 200
+
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json(
+                status: 400,
+                data: ['msg' => $e->getMessage()],
+            );
+        }
+    }
 }
